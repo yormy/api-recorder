@@ -3,34 +3,28 @@
 namespace Yormy\ApiIoTracker\Domain\HttpLogger\Observers\Listeners;
 
 use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
-use Yormy\ApiIoTracker\Domain\HttpLogger\Services\UrlOnlyExcept;
-use Yormy\ApiIoTracker\Domain\User\Services\Resolvers\UserResolver;
+use Yormy\ApiIoTracker\DTO\LogData;
+use Yormy\StringGuard\Services\UrlGuard;
 
 class HttpResponseListener
 {
     public function handle(object $event): void
     {
-        $include = UrlOnlyExcept::shouldIncludeREquest($event->request, config('api-io-tracker.httplogger'));
+        $url = $event->request->url();
+        $method = $event->request->method();
+        $config = config('api-io-tracker.url_guards');
+        $include = UrlGuard::isIncluded($url, $method, $config);
+        $data = UrlGuard::getData($url, $method, $config);
 
         if (!$include) {
             return;
         }
 
-        $data = [
+        $logData = LogData::make($event->request, $event?->response, $data);
+
+        LogHttpOutgoing::create([
             'status' => 'OK',
-            'url' => $event->request->url(),
-            'method' => $event->request->method(),
-            'headers' => $event->request->headers(),
-            'body' => $event->request->body(),
-            'response' => substr($event->response->body(), 0, 6000),
-        ];
-
-        $user = UserResolver::getCurrent();
-        if ($user) {
-            $data['user_id'] = $user->id;
-            $data['user_type'] = get_class($user);
-        }
-
-        LogHttpOutgoing::create($data);
+            ...$logData
+        ]);
     }
 }

@@ -21,12 +21,6 @@ jobs:
       - name: Run Unit tests
         run: composer test:unit
 
-      - name: Run Basic tests
-        run: composer test:main
-
-      - name: Run Extended tests
-        run: composer test:ext
-
       - name: Upload artifacts
         uses: actions/upload-artifact@master
         if: failure()

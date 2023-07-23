@@ -1,3 +1,3 @@
 # Contributors
 
-* [Mexion](https://github.com/mexion)
+* [Yormy](https://github.com/yormy)

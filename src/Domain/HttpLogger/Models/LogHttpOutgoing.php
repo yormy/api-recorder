@@ -16,8 +16,4 @@ class LogHttpOutgoing extends BaseModel
         'body',
         'response',
     ];
-
-    protected $casts = [
-        'headers' => 'array'
-    ];
 }

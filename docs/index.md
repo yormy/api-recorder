@@ -1,25 +1,24 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
-  name: "Bedrock Users Laravel"
+  name: "Api Io Tracker"
   text: ""
-  tagline: A messaging package
+  tagline: api-io-tracker
   image:
-      src: /chaski.png
-      alt: chaski laravel
+      src: /yormy.png
+      alt: api-io-tracker
   actions:
     - theme: brand
       text: Get Started
-      link: /v1/introduction/what-is-chaski
+      link: docs/v1/introduction/what-is-api-io-tracker
     - theme: alt
       text: View on GitHub
-      link: https://github.com/mexion/api-io-tracker/
+      link: https://github.com/yormy/api-io-tracker/
 
 features:
   - title: Implementable
-    details: Easy adding many additional functionalities (customizable templates, subscribable, translatable, trackable
+    details: Easy adding many additional functionalities
   - title: Extendable
     details: Easy to extend classes and actions based on events
   - title: Documentation and support

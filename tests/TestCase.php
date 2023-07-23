@@ -2,6 +2,7 @@
 
 namespace Yormy\ApiIoTracker\Tests;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Route;
 use Lab404\Impersonate\ImpersonateServiceProvider;
 use Yormy\ApiIoTracker\ApiIoTrackerServiceProvider;
@@ -12,21 +13,17 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 use OwenIt\Auditing\AuditingServiceProvider;
 use PragmaRX\Google2FALaravel\ServiceProvider as PragmaRxServiceProvider;
 use Spatie\LaravelRay\RayServiceProvider;
+use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
 use Yormy\TripwireLaravel\Observers\Listeners\NotifyAdmin;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
 
 abstract class TestCase extends BaseTestCase
 {
-    // disable after migration to inpect db during test
-    //use RefreshDatabase;
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
-        $this->updateEnv();
-
-        //$this->setupDatabase();
-
         parent::setUp();
 
         $this->setUpConfig();
@@ -48,6 +45,16 @@ abstract class TestCase extends BaseTestCase
     protected function setUpConfig(): void
     {
         config(['app.key' => 'base64:yNmpwO5YE6xwBz0enheYLBDslnbslodDqK1u+oE5CEE=']);
+
+        $urlGuard = [
+            'include' => [
+                UrlGuardConfig::make('*'),
+            ],
+            'exclude' => [
+            ]
+        ];
+
+        config(['api-io-tracker.url_guards' => $urlGuard]);
     }
 
 //    protected function setupMiddleware()
@@ -57,20 +64,6 @@ abstract class TestCase extends BaseTestCase
 //            ->pushMiddleware('Illuminate\View\Middleware\ShareErrorsFromSession::class');
 //    }
 
-    protected function updateEnv()
-    {
-//        copy('./tests/Setup/.env', './vendor/orchestra/testbench-core/laravel/.env');
-    }
-
-//    protected function setupDatabase()
-//    {
-//        $migrations = [
-//            'audits.php'
-//        ];
-//        foreach ($migrations as $filename) {
-//            copy("./tests/Setup/Database/Migrations/$filename", "./vendor/orchestra/testbench-core/laravel/database/migrations/$filename");
-//        }
-//    }
 
     /**
      * @psalm-return \Closure():'next'

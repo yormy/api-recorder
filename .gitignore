@@ -9,7 +9,7 @@ psalm.xml
 vendor
 
 psalm-report.txt
-docs/.vitepress/dist
-docs/.vitepress/cache
+.vitepress/dist
+.vitepress/cache
 node_modules
 .phpunit.cache

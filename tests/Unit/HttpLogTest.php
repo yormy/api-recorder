@@ -8,32 +8,40 @@ use Illuminate\Support\Facades\Http;
 use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
 use Yormy\ApiIoTracker\Services\SimpleHandler;
 use Yormy\ApiIoTracker\Tests\TestCase;
+use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 class HttpLogTest extends TestCase
 {
     /**
      * @test
-     * @group xx
+     * @group tracker
      */
     public function Http_LogConnectionError(): void
     {
         $this->expectException(ConnectionException::class);
-        Http::post('https://sdfsdfsdfsdfdsu.nl', ['hello' => 'kkkk']);
+        Http::post('https://example-failed-url-test-random.nl', ['hello' => 'kkkk']);
         $lastItem = LogHttpOutgoing::orderBy('id','desc')->first();
         $this->assertEquals('FAILED', $lastItem->status);
     }
 
     /**
      * @test
-     * @group xx
+     * @group tracker
      */
     public function Http_ExcludedUrl_NotLogged(): void
     {
         $exclude = 'https://www.nu.nl';
 
-        config(['api-io-tracker.httplogger.except' => [
-            $exclude => ['*']
-        ]]);
+        $urlGuard = [
+            'include' => [
+                UrlGuardConfig::make('*'),
+            ],
+            'exclude' => [
+                UrlGuardConfig::make('https://www.nu.*'),
+            ]
+        ];
+
+        config(['api-io-tracker.url_guards' => $urlGuard]);
 
         $startCount = LogHttpOutgoing::count();
         Http::get($exclude);
@@ -42,14 +50,11 @@ class HttpLogTest extends TestCase
 
     /**
      * @test
-     * @group xx
+     * @group tracker
      */
     public function Http_Url_Logged(): void
     {
         $exclude = 'https://www.nu.nl';
-
-        config(['api-io-tracker.httplogger.only' => [] ]);
-        config(['api-io-tracker.httplogger.except' => [] ]);
 
         $startCount = LogHttpOutgoing::count();
         Http::get($exclude);

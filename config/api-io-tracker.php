@@ -6,43 +6,76 @@ use Yormy\ApiIoTracker\Domain\Tracking\Models\SentEmailLog;
 use Yormy\ApiIoTracker\Services\Resolvers\Encryptor;
 use Yormy\ApiIoTracker\Services\Resolvers\IpResolver;
 use Yormy\ApiIoTracker\Tests\Models\User;
+use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 return [
 
-    'url_tracking' => [
-        'in' =>[
-            'only' => [],
-            'except' => [
-                'https://www.nu.nl' => ['*']
-            ]
+    /*
+    |--------------------------------------------------------------------------
+    | Enabled
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'enabled_incoming' => true,
+    'enabled_outgoing' => true,
+
+    'excluded_message' => '*** EXCLUDED ***',
+    'masked_message' => '**** MASKED ***',
+
+    /*
+    |--------------------------------------------------------------------------
+    | What urls to track
+    |--------------------------------------------------------------------------
+    |
+    */
+    'url_guards' => [
+        'include' => [
+            UrlGuardConfig::make('*'),
         ],
-        'out' =>[
-            'only' => [],
-            'except' => [
-                'https://www.nu.nl' => ['*']
-            ]
+        'exclude' => [
+            UrlGuardConfig::make('https://example-failed*'),
         ]
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | What fields to mask
+    |--------------------------------------------------------------------------
+    | ie: password
+    */
 
     'field_masking' => [
-        'in' => [
+        'incoming' => [
             'headers' => [],
-            'request' => [],
+            'body' => [],
             'response' => [],
         ],
-        'out' => [
+        'outgoing' => [
             'headers' => [],
-            'request' => [],
+            'body' => [],
             'response' => [],
         ]
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Overridable helper functions
+    |--------------------------------------------------------------------------
+    |
+    */
     'resolvers' => [
         'ip' => IpResolver::class,
         'encryptor' => Encryptor::class
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Prune
+    |--------------------------------------------------------------------------
+    |
+    */
     'prune_after_days' => 365,
 
-    'masked_as' => '*** CONTENT NOT STORED FOR SECURITY ***',
+
 ];

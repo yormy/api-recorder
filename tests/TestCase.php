@@ -3,24 +3,18 @@
 namespace Yormy\ApiIoTracker\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-use Lab404\Impersonate\ImpersonateServiceProvider;
-use Yormy\ApiIoTracker\ApiIoTrackerServiceProvider;
-use Yormy\ApiIoTracker\Domain\User\Models\Admin;
-use Yormy\ApiIoTracker\Domain\User\Models\Member;
-use Yormy\ApiIoTracker\ServiceProviders\EventServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use OwenIt\Auditing\AuditingServiceProvider;
-use PragmaRX\Google2FALaravel\ServiceProvider as PragmaRxServiceProvider;
-use Spatie\LaravelRay\RayServiceProvider;
+use Yormy\ApiIoTracker\ApiIoTrackerServiceProvider;
+use Yormy\ApiIoTracker\Http\Middleware\LogIncomingRequest;
+use Yormy\ApiIoTracker\ServiceProviders\EventServiceProvider;
+use Yormy\ApiIoTracker\Tests\Setup\Http\Controllers\TestController;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
-use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
-use Yormy\TripwireLaravel\Observers\Listeners\NotifyAdmin;
-use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
 
 abstract class TestCase extends BaseTestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -28,9 +22,9 @@ abstract class TestCase extends BaseTestCase
 
         $this->setUpConfig();
 
-        $this->withoutExceptionHandling();
+        $this->setupRoutes();
 
-      //  $this->setupMiddleware();
+        $this->withoutExceptionHandling();
 
         $this->app->register(EventServiceProvider::class);
     }
@@ -51,27 +45,20 @@ abstract class TestCase extends BaseTestCase
                 UrlGuardConfig::make('*'),
             ],
             'exclude' => [
-            ]
+            ],
         ];
 
         config(['api-io-tracker.url_guards' => $urlGuard]);
     }
 
-//    protected function setupMiddleware()
-//    {
-//        $this->app->make('Illuminate\Contracts\Http\Kernel')
-//            ->pushMiddleware('Illuminate\Session\Middleware\StartSession')
-//            ->pushMiddleware('Illuminate\View\Middleware\ShareErrorsFromSession::class');
-//    }
-
-
-    /**
-     * @psalm-return \Closure():'next'
-     */
-    public function getNextClosure(): \Closure
+    protected function setupRoutes()
     {
-        return function () {
-            return 'next';
-        };
+        Log::debug('log setupRoutes');
+        Route::prefix('test')
+            ->name('test.')
+            ->middleware(LogIncomingRequest::class)
+            ->group(function () {
+                Route::get('/getroute', [TestController::class, 'getRoute'])->name('getroute');
+            });
     }
 }

@@ -34,6 +34,15 @@ return [
         ],
     ],
 
+    'incoming_url_guards' => [
+        'include' => [
+            UrlGuardConfig::make('*'),
+        ],
+        'exclude' => [
+            UrlGuardConfig::make('https://example-failed*'),
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | What fields to mask

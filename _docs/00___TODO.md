@@ -11,6 +11,9 @@
 # Incoming ?
 - is replayable ?
 - contains secrets ?
+- mask
+- filter
+- exclude
 
 
 # Cleanup

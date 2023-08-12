@@ -13,15 +13,20 @@ class LogHttpIncoming extends BaseModel
         'created_at',
         'method',
         'url',
-        'payload',
-        'payload_raw',
+        'body',
+        'body_raw',
         'headers',
         'response',
         'response_headers',
         'duration',
         'controller',
         'action',
-        'models',
-        'ip',
+        'models_retrieved',
+        'from_ip',
+    ];
+
+
+    protected $casts = [
+        'models_retrieved' => 'array'
     ];
 }

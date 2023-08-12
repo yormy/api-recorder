@@ -23,14 +23,6 @@ class DBLogger extends AbstractLogger // implements ApiLoggerInterface{
     public function saveLogs(Request $request, Response|JsonResponse|RedirectResponse $response)
     {
         $data = $this->logData($request, $response);
-
-        $this->logModel->fill($data);
-
-        $this->logModel->save();
-    }
-
-    public function deleteLogs()
-    {
-        $this->logModel->truncate();
+        $this->logModel->create($data);
     }
 }

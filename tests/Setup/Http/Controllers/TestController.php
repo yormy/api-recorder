@@ -16,4 +16,12 @@ class TestController extends Controller
 
         return 'getroute return values';
     }
+
+    public function postRoute()
+    {
+        $logIncom = LogHttpIncoming::all();
+        $logOut = LogHttpOutgoing::all();
+
+        return 'postroute return values';
+    }
 }

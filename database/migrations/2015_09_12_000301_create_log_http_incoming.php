@@ -19,17 +19,18 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('user_type')->nullable();
             $table->string('headers')->nullable();
-            $table->string('body')->nullable();
+            $table->longText('body')->nullable();
+            $table->longText('body_raw')->nullable();
             $table->longText('response')->nullable();
             $table->longText('response_headers')->nullable();
             $table->string('duration');
-            $table->longText('payload');
-            $table->longText('payload_raw')->nullable();
+
+
 
             $table->string('controller');
             $table->string('action');
-            $table->string('models');
-            $table->string('ip');
+            $table->string('models_retrieved');
+            $table->string('from_ip');
             $table->timestamps();
         });
     }

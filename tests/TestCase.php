@@ -14,7 +14,7 @@ use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 abstract class TestCase extends BaseTestCase
 {
-    //use RefreshDatabase;
+   // use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -59,6 +59,7 @@ abstract class TestCase extends BaseTestCase
             ->middleware(LogIncomingRequest::class)
             ->group(function () {
                 Route::get('/getroute', [TestController::class, 'getRoute'])->name('getroute');
+                Route::post('/postroute', [TestController::class, 'postRoute'])->name('postroute');
             });
     }
 }

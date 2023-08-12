@@ -24,5 +24,9 @@ class HttpLogIncomingTest extends TestCase
     {
         $url = route('test.getroute', []);
         $this->json('GET', $url);
+        dd();
+
+        $url = route('test.postroute', []);
+        $this->json('POST', $url, ['hello' =>'ewlcome']);
     }
 }

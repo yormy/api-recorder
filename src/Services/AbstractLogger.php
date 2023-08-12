@@ -11,49 +11,73 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Psy\Util\Json;
+use Yormy\ApiIoTracker\Services\Resolvers\IpResolver;
+use Yormy\ApiIoTracker\Services\Resolvers\UserResolver;
 
 abstract class AbstractLogger
 {
     protected $logs = [];
 
-    public $models = [];
+    public $modelsRetrieved = [];
 
     public function __construct()
     {
-        $this->boot();
+        $this->listeners();
     }
 
-    public function boot()
+    protected function listeners()
     {
         Event::listen('eloquent.*', function ($event, $models) {
-
             if (Str::contains($event, 'eloquent.retrieved')) {
                 foreach (array_filter($models) as $model) {
                     $class = get_class($model);
-                    $this->models[$class] = ($this->models[$class] ?? 0) + 1;
+                    $this->modelsRetrieved[$class] = ($this->modelsRetrieved[$class] ?? 0) + 1;
                 }
             }
-            //dd($this->models);
         });
     }
 
-    /**
-     * logs into associative array
-     *
-     *
-     * @return array
-     */
     public function logData(Request $request, Response|JsonResponse|RedirectResponse $response)
     {
-        $currentRouteAction = Route::currentRouteAction();
+        [$controller, $action] = $this->getCurrentRoute();
 
-        // Initialiaze controller and action variable before use them
+        $data = [];
+        $data['status_code'] = $response->status();
+        $data['url'] = $request->path();
+        $data['method'] = $request->method();
+
+        $user = UserResolver::getCurrent();
+        if ($user) {
+            $data['user_id'] = $user->id;
+            $data['user_type'] = get_class($user);
+        }
+
+        $data['headers'] = $this->headers($request);
+        $data['body'] = $this->payload($request);
+
+        $data['body_raw'] = config('api-io-tracker.body_raw', false) ? file_get_contents('php://input') : null;
+
+        $data['response'] = $response->getContent();
+        $data['response_headers'] = $this->headers($response);
+        $data['duration'] = $this->getDuration();
+        $data['controller'] = $controller;
+        $data['action'] = $action;
+        $data['models_retrieved'] = $this->modelsRetrieved;
+        $data['from_ip'] = IpResolver::get($request);
+
+        return $data;
+    }
+
+    private function getDuration(): float
+    {
+        return number_format(microtime(true) - LARAVEL_START, 3);
+    }
+
+    private function getCurrentRoute(): array
+    {
         $controller = '';
         $action = '';
-
-        /*
-         * Some routes will not contain the `@` symbole (e.g. closures, or routes using a single action controller).
-         */
+        $currentRouteAction = Route::currentRouteAction();
         if ($currentRouteAction) {
             if (strpos($currentRouteAction, '@') !== false) {
                 [$controller, $action] = explode('@', $currentRouteAction);
@@ -68,33 +92,10 @@ abstract class AbstractLogger
             }
         }
 
-        $endTime = microtime(true);
-
-        $implode_models = $this->models;
-
-
-        array_walk($implode_models, function (&$value, $key) {
-            $value = "{$key} ({$value})";
-        });
-
-        $models = implode(', ', $implode_models);
-        $this->logs['created_at'] = Carbon::now();
-        $this->logs['method'] = $request->method();
-        $this->logs['url'] = $request->path();
-        $this->logs['payload'] = $this->payload($request);
-        $this->logs['payload_raw'] = config('apilog.payload_raw', false) ? file_get_contents('php://input') : null;
-        $this->logs['headers'] = $this->headers($request);
-        $this->logs['status_code'] = $response->status();
-        $this->logs['response'] = $response->getContent();
-        $this->logs['response_headers'] = $this->headers($response);
-        $this->logs['duration'] = number_format($endTime - LARAVEL_START, 3);
-        $this->logs['controller'] = $controller;
-        $this->logs['action'] = $action;
-        $this->logs['models'] = $models;
-        $this->logs['ip'] = $request->ip();
-
-        return $this->logs;
+        return [$controller, $action];
     }
+
+
 
     /**
      * Formats the request payload for logging

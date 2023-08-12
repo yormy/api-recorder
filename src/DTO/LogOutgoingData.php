@@ -40,4 +40,10 @@ class LogOutgoingData extends LogData
 
         return $data;
     }
+
+    protected static function getGlobalFilter(): array
+    {
+        return static::upperCase(config('api-io-tracker.field_masking.outgoing'));
+    }
+
 }

@@ -49,6 +49,11 @@ class LogIncomingData extends LogData
         return $data;
     }
 
+    protected static function getGlobalFilter(): array
+    {
+        return static::upperCase(config('api-io-tracker.field_masking.incoming'));
+    }
+
     private static function getHeaders($object, array $data): string
     {
         $headers = $object->headers->all();

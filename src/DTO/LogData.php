@@ -27,7 +27,7 @@ class LogData
             return [];
         }
 
-        $bodyMaskGlobal = static::upperCase(config('api-io-tracker.field_masking.outgoing.body'));
+        $bodyMaskGlobal = static::getGlobalFilter()['BODY'];
         $bodyMaskUrl = $data['MASK']['BODY'] ?? [];
         $bodyMask = array_merge($bodyMaskGlobal, $bodyMaskUrl);
         if (isset($bodyMask)) {
@@ -48,7 +48,7 @@ class LogData
             return [];
         }
 
-        $headersMaskGlobal = static::upperCase(config('api-io-tracker.field_masking.outgoing.headers'));
+        $headersMaskGlobal = static::getGlobalFilter()['HEADERS'];
         $headersMaskUrl = $data['MASK']['HEADERS'] ?? [];
         $headersMask = array_merge($headersMaskGlobal, $headersMaskUrl);
         if (isset($headersMask)) {

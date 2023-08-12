@@ -2,15 +2,14 @@
 
 namespace Yormy\ApiIoTracker\Services;
 
-use AWT\Contracts\ApiLoggerInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpIncoming;
+use Yormy\ApiIoTracker\DTO\LogIncomingData;
 
-class DBLogger extends AbstractLogger // implements ApiLoggerInterface{
+class DatabaseLogger extends BaseLogger
 {
     public $logModel;
 
@@ -22,7 +21,8 @@ class DBLogger extends AbstractLogger // implements ApiLoggerInterface{
 
     public function saveLogs(Request $request, Response|JsonResponse|RedirectResponse $response)
     {
-        $data = $this->logData($request, $response);
+        $data = LogIncomingData::make($request, $response, [], $this->modelsRetrieved);
+
         $this->logModel->create($data);
     }
 }

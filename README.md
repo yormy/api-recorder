@@ -5,7 +5,7 @@
 
 # ApiIoTracker
 
-# [Click for Documentation](https://mexion.github.io/api-io-tracker/)
+# [Click for Documentation](https://mexion.github.io/api-io-tracker/docs/)
 
 ## Security Vulnerabilities
 [Report security issues](https://yormy.github.io/api-io-tracker/general/report_security.html)

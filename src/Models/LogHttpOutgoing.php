@@ -1,8 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Domain\HttpLogger\Models;
-
-use Yormy\ApiIoTracker\Models\BaseModel;
+namespace Yormy\ApiIoTracker\Models;
 
 class LogHttpOutgoing extends BaseModel
 {

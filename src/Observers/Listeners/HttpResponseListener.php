@@ -1,13 +1,12 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Domain\HttpLogger\Observers\Listeners;
+namespace Yormy\ApiIoTracker\Observers\Listeners;
 
-use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
-use Yormy\ApiIoTracker\DTO\LogData;
-use Yormy\ApiIoTracker\DTO\LogOutgoingData;
+use Yormy\ApiIoTracker\DataObjects\LogOutgoingData;
+use Yormy\ApiIoTracker\Models\LogHttpOutgoing;
 use Yormy\StringGuard\Services\UrlGuard;
 
-class HttpConnectionFailedListener
+class HttpResponseListener
 {
     public function handle(object $event): void
     {
@@ -21,10 +20,10 @@ class HttpConnectionFailedListener
             return;
         }
 
-        $logData = LogOutgoingData::make($event->request, null, $data);
+        $logData = LogOutgoingData::make($event->request, $event?->response, $data);
 
         LogHttpOutgoing::create([
-            'status' => 'FAILED',
+            'status' => 'OK',
             ...$logData,
         ]);
     }

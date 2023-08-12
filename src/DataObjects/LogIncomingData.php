@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\DTO;
+namespace Yormy\ApiIoTracker\DataObjects;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

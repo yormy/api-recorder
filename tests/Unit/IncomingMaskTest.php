@@ -2,7 +2,7 @@
 
 namespace Yormy\ApiIoTracker\Tests\Unit;
 
-use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpIncoming;
+use Yormy\ApiIoTracker\Models\LogHttpIncoming;
 use Yormy\ApiIoTracker\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 

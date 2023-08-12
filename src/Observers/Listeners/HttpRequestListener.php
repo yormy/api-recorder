@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Domain\HttpLogger\Observers\Listeners;
+namespace Yormy\ApiIoTracker\Observers\Listeners;
 
 use Yormy\StringGuard\Services\UrlGuard;
 

@@ -3,9 +3,8 @@
 namespace Yormy\ApiIoTracker\Tests\Setup\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
-use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpIncoming;
-use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
+use Yormy\ApiIoTracker\Models\LogHttpIncoming;
+use Yormy\ApiIoTracker\Models\LogHttpOutgoing;
 
 class TestController extends Controller
 {

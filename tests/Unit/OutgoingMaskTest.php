@@ -3,7 +3,7 @@
 namespace Yormy\ApiIoTracker\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
+use Yormy\ApiIoTracker\Models\LogHttpOutgoing;
 use Yormy\ApiIoTracker\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 

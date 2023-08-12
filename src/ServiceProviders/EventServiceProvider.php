@@ -3,7 +3,7 @@
 namespace Yormy\ApiIoTracker\ServiceProviders;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Yormy\ApiIoTracker\Domain\HttpLogger\Observers\HttpLoggerSubscriber;
+use Yormy\ApiIoTracker\Observers\HttpLoggerSubscriber;
 
 class EventServiceProvider extends ServiceProvider
 {

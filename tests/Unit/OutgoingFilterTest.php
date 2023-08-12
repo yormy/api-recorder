@@ -62,7 +62,6 @@ class OutgoingFilterTest extends TestCase
         $this->assertGreaterThan($countStart, LogHttpOutgoing::count());
     }
 
-
     /**
      * @test
      *
@@ -98,7 +97,6 @@ class OutgoingFilterTest extends TestCase
         $this->assertEquals(json_encode([$message]), $lastItem->body);
         $this->assertEquals($message, $lastItem->response);
     }
-
 
     /**
      * @test

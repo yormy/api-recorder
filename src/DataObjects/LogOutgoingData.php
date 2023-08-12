@@ -45,5 +45,4 @@ class LogOutgoingData extends LogData
     {
         return static::upperCase(config('api-io-tracker.field_masking.outgoing'));
     }
-
 }

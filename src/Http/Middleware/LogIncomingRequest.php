@@ -35,7 +35,7 @@ class LogIncomingRequest
         $include = UrlGuard::isIncluded($url, $method, $config);
         $data = UrlGuard::getData($url, $method, $config);
 
-        if (!$include) {
+        if (! $include) {
             return;
         }
 

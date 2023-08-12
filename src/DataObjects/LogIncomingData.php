@@ -2,13 +2,13 @@
 
 namespace Yormy\ApiIoTracker\DataObjects;
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Yormy\ApiIoTracker\Services\Resolvers\IpResolver;
 use Yormy\ApiIoTracker\Services\Resolvers\UserResolver;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 
 class LogIncomingData extends LogData
 {
@@ -66,6 +66,7 @@ class LogIncomingData extends LogData
     {
         $headers = $object->headers->all();
         $headers = self::filterHeaders($headers, $filter);
+
         return json_encode($headers);
     }
 

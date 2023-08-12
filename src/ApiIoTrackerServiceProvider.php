@@ -5,7 +5,6 @@ namespace Yormy\ApiIoTracker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Yormy\ApiIoTracker\Contracts\ApiLoggerInterface;
 use Yormy\ApiIoTracker\Http\Middleware\LogIncomingRequest;
 use Yormy\ApiIoTracker\ServiceProviders\EventServiceProvider;
 use Yormy\ApiIoTracker\ServiceProviders\RouteServiceProvider;

@@ -20,7 +20,7 @@ class HttpLogIncomingTest extends TestCase
         LogHttpIncoming::truncate();
 
         $url = route('test.postroute', []);
-        $this->json('POST', $url, ['hello' =>'ewlcome']);
+        $this->json('POST', $url, ['hello' => 'ewlcome']);
 
         $lastItem = LogHttpIncoming::latest()->first();
         $this->assertSame($lastItem->status_code, 200);
@@ -32,7 +32,6 @@ class HttpLogIncomingTest extends TestCase
         $this->assertSame($lastItem->url, $relativeUrl);
     }
 
-
     /**
      * @test
      *
@@ -43,7 +42,7 @@ class HttpLogIncomingTest extends TestCase
         LogHttpIncoming::truncate();
 
         $url = route('test.getroute', []);
-        $this->json('GET', $url, ['hello' =>'ewlcome']);
+        $this->json('GET', $url, ['hello' => 'ewlcome']);
 
         $lastItem = LogHttpIncoming::latest()->first();
         $this->assertSame($lastItem->status_code, 200);
@@ -54,5 +53,4 @@ class HttpLogIncomingTest extends TestCase
         $relativeUrl = str_replace('https://localhost/', '', $relativeUrl);
         $this->assertSame($lastItem->url, $relativeUrl);
     }
-
 }

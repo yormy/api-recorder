@@ -25,8 +25,6 @@ return new class extends Migration
             $table->longText('response_headers')->nullable();
             $table->string('duration');
 
-
-
             $table->string('controller');
             $table->string('action');
             $table->string('models_retrieved');

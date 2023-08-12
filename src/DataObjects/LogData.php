@@ -30,7 +30,6 @@ class LogData
         return $response;
     }
 
-
     protected static function filterBody(?array $body, array $filter): array
     {
         $excludedMessage = config('api-io-tracker.excluded_message');
@@ -80,5 +79,4 @@ class LogData
 
         return json_decode($upper, true);
     }
-
 }

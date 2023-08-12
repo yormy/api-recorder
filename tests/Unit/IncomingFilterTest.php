@@ -60,7 +60,6 @@ class IncomingFilterTest extends TestCase
         $this->assertGreaterThan($countStart, LogHttpIncoming::count());
     }
 
-
     /**
      * @test
      *
@@ -88,7 +87,7 @@ class IncomingFilterTest extends TestCase
         config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
 
         $url = route('test.getroute', []);
-        $this->json('GET', $url, ['hello' =>'welcome']);
+        $this->json('GET', $url, ['hello' => 'welcome']);
         $lastItem = LogHttpIncoming::latest()->first();
 
         $message = config('api-io-tracker.excluded_message');
@@ -121,7 +120,7 @@ class IncomingFilterTest extends TestCase
         config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
 
         $url = route('test.getroute', []);
-        $this->json('GET', $url, ['hello' =>'welcome']);
+        $this->json('GET', $url, ['hello' => 'welcome']);
         $lastItem = LogHttpIncoming::latest()->first();
 
         $message = config('api-io-tracker.excluded_message');

@@ -66,7 +66,7 @@ class IncomingFilterTest extends TestCase
     /**
      * @test
      *
-     * @group xxx
+     * @group incoming-filter
      */
     public function Incoming_UrlFieldExcluded_Excluded(): void
     {
@@ -103,7 +103,7 @@ class IncomingFilterTest extends TestCase
     /**
      * @test
      *
-     * @group xxx
+     * @group incoming-filter
      */
     public function Incoming_UrlFieldNotExcluded_Included(): void
     {

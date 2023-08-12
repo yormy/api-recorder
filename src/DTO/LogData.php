@@ -57,7 +57,7 @@ class LogData
         }
 
         $body = $request->body();
-        if (!$body) {
+        if (! $body) {
             return [];
         }
 
@@ -80,7 +80,7 @@ class LogData
         }
 
         $headers = $request->headers();
-        if (!$headers) {
+        if (! $headers) {
             return [];
         }
 
@@ -102,4 +102,3 @@ class LogData
         return json_decode($upper, true);
     }
 }
-

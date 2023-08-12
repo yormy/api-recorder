@@ -16,7 +16,7 @@ class HttpConnectionFailedListener
         $include = UrlGuard::isIncluded($url, $method, $config);
         $data = UrlGuard::getData($url, $method, $config);
 
-        if (!$include) {
+        if (! $include) {
             return;
         }
 
@@ -24,7 +24,7 @@ class HttpConnectionFailedListener
 
         LogHttpOutgoing::create([
             'status' => 'FAILED',
-            ...$logData
+            ...$logData,
         ]);
     }
 }

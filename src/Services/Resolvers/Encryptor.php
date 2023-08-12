@@ -11,7 +11,7 @@ class Encryptor
 
     public static function decrypt(?string $value): ?string
     {
-        if (!$value) {
+        if (! $value) {
             return $value;
         }
 

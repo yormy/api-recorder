@@ -1,11 +1,7 @@
 <?php
 
-use Yormy\ApiIoTracker\Domain\Create\Models\TranslatableMailTemplate;
-use Yormy\ApiIoTracker\Domain\Tracking\Models\SentEmail;
-use Yormy\ApiIoTracker\Domain\Tracking\Models\SentEmailLog;
 use Yormy\ApiIoTracker\Services\Resolvers\Encryptor;
 use Yormy\ApiIoTracker\Services\Resolvers\IpResolver;
-use Yormy\ApiIoTracker\Tests\Models\User;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 return [
@@ -35,7 +31,7 @@ return [
         ],
         'exclude' => [
             UrlGuardConfig::make('https://example-failed*'),
-        ]
+        ],
     ],
 
     /*
@@ -55,7 +51,7 @@ return [
             'headers' => [],
             'body' => [],
             'response' => [],
-        ]
+        ],
     ],
 
     /*
@@ -66,7 +62,7 @@ return [
     */
     'resolvers' => [
         'ip' => IpResolver::class,
-        'encryptor' => Encryptor::class
+        'encryptor' => Encryptor::class,
     ],
 
     /*
@@ -76,6 +72,5 @@ return [
     |
     */
     'prune_after_days' => 365,
-
 
 ];

@@ -2,11 +2,8 @@
 
 namespace Yormy\ApiIoTracker\Tests\Unit;
 
-use GuzzleLogMiddleware\LogMiddleware;
-use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
-use Yormy\ApiIoTracker\Services\SimpleHandler;
 use Yormy\ApiIoTracker\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
@@ -14,6 +11,7 @@ class HttpLogIncludeExcludeTest extends TestCase
 {
     /**
      * @test
+     *
      * @group tracker
      */
     public function HttpError_Excluded_NotLogged(): void
@@ -26,7 +24,7 @@ class HttpLogIncludeExcludeTest extends TestCase
             ],
             'exclude' => [
                 UrlGuardConfig::make('https://example-failed*'),
-            ]
+            ],
         ];
 
         config(['api-io-tracker.url_guards' => $urlGuard]);
@@ -40,6 +38,7 @@ class HttpLogIncludeExcludeTest extends TestCase
 
     /**
      * @test
+     *
      * @group tracker
      */
     public function HttpError_Included_Logged(): void
@@ -51,7 +50,7 @@ class HttpLogIncludeExcludeTest extends TestCase
                 UrlGuardConfig::make('*'),
             ],
             'exclude' => [
-            ]
+            ],
         ];
 
         config(['api-io-tracker.url_guards' => $urlGuard]);

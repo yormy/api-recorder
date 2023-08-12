@@ -16,7 +16,7 @@ trait RequestTrait
         $files = []
     ) {
         $request = new Request;
+
         return $request->createFromBase(\Symfony\Component\HttpFoundation\Request::create($uri, $method, $parameters, $cookies, $files, $server, $content));
     }
-
 }

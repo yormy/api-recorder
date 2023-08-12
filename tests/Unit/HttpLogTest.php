@@ -2,11 +2,9 @@
 
 namespace Yormy\ApiIoTracker\Tests\Unit;
 
-use GuzzleLogMiddleware\LogMiddleware;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
-use Yormy\ApiIoTracker\Services\SimpleHandler;
 use Yormy\ApiIoTracker\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
@@ -14,18 +12,20 @@ class HttpLogTest extends TestCase
 {
     /**
      * @test
+     *
      * @group tracker
      */
     public function Http_LogConnectionError(): void
     {
         $this->expectException(ConnectionException::class);
         Http::post('https://example-failed-url-test-random.nl', ['hello' => 'kkkk']);
-        $lastItem = LogHttpOutgoing::orderBy('id','desc')->first();
+        $lastItem = LogHttpOutgoing::orderBy('id', 'desc')->first();
         $this->assertEquals('FAILED', $lastItem->status);
     }
 
     /**
      * @test
+     *
      * @group tracker
      */
     public function Http_ExcludedUrl_NotLogged(): void
@@ -38,7 +38,7 @@ class HttpLogTest extends TestCase
             ],
             'exclude' => [
                 UrlGuardConfig::make('https://www.nu.*'),
-            ]
+            ],
         ];
 
         config(['api-io-tracker.url_guards' => $urlGuard]);
@@ -50,6 +50,7 @@ class HttpLogTest extends TestCase
 
     /**
      * @test
+     *
      * @group tracker
      */
     public function Http_Url_Logged(): void
@@ -60,7 +61,7 @@ class HttpLogTest extends TestCase
         Http::get($exclude);
         $this->assertNotEquals($startCount, LogHttpOutgoing::count());
 
-        $lastItem = LogHttpOutgoing::orderBy('id','desc')->first();
+        $lastItem = LogHttpOutgoing::orderBy('id', 'desc')->first();
         $this->assertEquals('GET', $lastItem->method);
     }
 }

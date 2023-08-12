@@ -3,8 +3,6 @@
 namespace Yormy\ApiIoTracker\ServiceProviders;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Yormy\ApiIoTracker\Routes\GuestRoutes;
-use Yormy\ApiIoTracker\Routes\MemberRoutes;
 
 class RouteServiceProvider extends ServiceProvider
 {

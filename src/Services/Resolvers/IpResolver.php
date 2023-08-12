@@ -1,4 +1,5 @@
 <?php
+
 namespace Yormy\ApiIoTracker\Services\Resolvers;
 
 use Illuminate\Http\Request;
@@ -34,5 +35,4 @@ class IpResolver
 
         return false;
     }
-
 }

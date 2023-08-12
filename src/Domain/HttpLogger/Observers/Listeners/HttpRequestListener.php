@@ -2,7 +2,6 @@
 
 namespace Yormy\ApiIoTracker\Domain\HttpLogger\Observers\Listeners;
 
-use Yormy\ApiIoTracker\Domain\HttpLogger\Services\UrlOnlyExcept;
 use Yormy\StringGuard\Services\UrlGuard;
 
 class HttpRequestListener
@@ -15,7 +14,7 @@ class HttpRequestListener
         $include = UrlGuard::isIncluded($url, $method, $config);
         $data = UrlGuard::getData($url, $method, $config);
 
-        if (!$include) {
+        if (! $include) {
             return;
         }
     }

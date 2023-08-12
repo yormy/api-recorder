@@ -2,11 +2,8 @@
 
 namespace Yormy\ApiIoTracker\Tests\Unit;
 
-use GuzzleLogMiddleware\LogMiddleware;
-use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
-use Yormy\ApiIoTracker\Services\SimpleHandler;
 use Yormy\ApiIoTracker\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
@@ -14,6 +11,7 @@ class HttpLogMaskTest extends TestCase
 {
     /**
      * @test
+     *
      * @group masked
      */
     public function HttpLog_ExcludeLogFields_Succcess(): void
@@ -23,7 +21,7 @@ class HttpLogMaskTest extends TestCase
                 'headers',
                 'body',
                 'response',
-            ]
+            ],
         ];
 
         $urlGuard = [
@@ -31,7 +29,7 @@ class HttpLogMaskTest extends TestCase
                 UrlGuardConfig::make('*', ['*'], $data),
             ],
             'exclude' => [
-            ]
+            ],
         ];
 
         config(['api-io-tracker.url_guards' => $urlGuard]);
@@ -47,6 +45,7 @@ class HttpLogMaskTest extends TestCase
 
     /**
      * @test
+     *
      * @group masked
      */
     public function HttpLog_MaskFields_Success(): void
@@ -63,7 +62,7 @@ class HttpLogMaskTest extends TestCase
                 UrlGuardConfig::make('*', ['*'], $data),
             ],
             'exclude' => [
-            ]
+            ],
         ];
 
         config(['api-io-tracker.url_guards' => $urlGuard]);
@@ -75,5 +74,4 @@ class HttpLogMaskTest extends TestCase
         $this->assertEquals(json_decode($lastItem->headers, true)['User-Agent'], $message);
         $this->assertEquals(json_decode($lastItem->body, true)['hello'], $message);
     }
-
 }

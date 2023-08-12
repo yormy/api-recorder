@@ -65,12 +65,10 @@ class LogIncomingData extends LogData
             if (strpos($currentRouteAction, '@') !== false) {
                 [$controller, $action] = explode('@', $currentRouteAction);
             } else {
-                // If we get a string, just use that.
                 if (is_string($currentRouteAction)) {
-                    [$controller, $action] = ['', $currentRouteAction];
+                    $action = $currentRouteAction;
                 } else {
-                    // Otherwise force it to be some type of string using `json_encode`.
-                    [$controller, $action] = ['', (string) json_encode($currentRouteAction)];
+                    $action = json_encode($currentRouteAction);
                 }
             }
         }

@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpIncoming;
-use Yormy\ApiIoTracker\Services\DBLogger;
+use Yormy\ApiIoTracker\Services\DatabaseLogger;
 
 class LogIncomingRequest
 {
@@ -16,7 +16,7 @@ class LogIncomingRequest
 
     public function __construct()
     {
-        $this->dblogger = new DBLogger(new LogHttpIncoming());
+        $this->dblogger = new DatabaseLogger(new LogHttpIncoming());
     }
 
     public function handle(Request $request, Closure $next)

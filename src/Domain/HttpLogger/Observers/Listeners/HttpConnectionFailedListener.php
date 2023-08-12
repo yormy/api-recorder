@@ -4,6 +4,7 @@ namespace Yormy\ApiIoTracker\Domain\HttpLogger\Observers\Listeners;
 
 use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
 use Yormy\ApiIoTracker\DTO\LogData;
+use Yormy\ApiIoTracker\DTO\LogOutgoingData;
 use Yormy\StringGuard\Services\UrlGuard;
 
 class HttpConnectionFailedListener
@@ -20,7 +21,7 @@ class HttpConnectionFailedListener
             return;
         }
 
-        $logData = LogData::make($event->request, null, $data);
+        $logData = LogOutgoingData::make($event->request, null, $data);
 
         LogHttpOutgoing::create([
             'status' => 'FAILED',

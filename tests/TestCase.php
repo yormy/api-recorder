@@ -14,7 +14,7 @@ use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 abstract class TestCase extends BaseTestCase
 {
-    //use RefreshDatabase;
+    use RefreshDatabase;
 
     protected function setUp(): void
     {

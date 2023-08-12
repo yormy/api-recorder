@@ -10,18 +10,10 @@ class HttpLogIncomingTest extends TestCase
 {
     use RequestTrait;
 
-    public function setUp(): void
-    {
-        if (!defined('LARAVEL_START')) {
-            define('LARAVEL_START', microtime(true));
-        }
-        parent::setUp();
-    }
-
     /**
      * @test
      *
-     * @group xxx
+     * @group incoming
      */
     public function HttpIncoming_Post_Log(): void
     {
@@ -44,7 +36,7 @@ class HttpLogIncomingTest extends TestCase
     /**
      * @test
      *
-     * @group xxx
+     * @group incoming
      */
     public function HttpIncoming_Get_Log(): void
     {
@@ -62,4 +54,5 @@ class HttpLogIncomingTest extends TestCase
         $relativeUrl = str_replace('https://localhost/', '', $relativeUrl);
         $this->assertSame($lastItem->url, $relativeUrl);
     }
+
 }

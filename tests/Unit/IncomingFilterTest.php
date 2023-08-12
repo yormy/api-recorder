@@ -8,7 +8,7 @@ use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpOutgoing;
 use Yormy\ApiIoTracker\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
-class IncomingIncludeExcludeTest extends TestCase
+class IncomingFilterTest extends TestCase
 {
     /**
      * @test

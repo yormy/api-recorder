@@ -1,10 +1,6 @@
 # Logger
 -configure aan/uit zetten incoming/outgoing logger/ encryption
 
-# test
-    'enabled_incoming' => true,
-    'enabled_outgoing' => true,
-
 # Outgoing
 - purge ?
 - is replayable ?
@@ -17,5 +13,4 @@
 # Cleanup
 pint
 psalm
-domain
 docs

@@ -83,15 +83,13 @@ return [
     'prune_after_days' => 365,
 
     /*
-|--------------------------------------------------------------------------
-|  Log raw payload
-|--------------------------------------------------------------------------
-|
-| This will log the raw request from php://input so you will get all details
-| BUT this will also log the exclusions, since we are not able to find field
-| in the php://input, by default we use request()->all() encoded in JSON
-|
-*/
-    'body_raw' => true,
-
+    |--------------------------------------------------------------------------
+    |  Fields to log
+    |--------------------------------------------------------------------------
+    */
+    'fields'=> [
+        'outgoing' => [
+            'body_raw' => true  // raw body payload // php://input
+        ]
+    ]
 ];

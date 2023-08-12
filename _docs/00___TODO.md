@@ -1,9 +1,10 @@
 # Logger
 -add incoming logger
 -configure aan/uit zetten incoming/outgoing logger/ encryption
-- 
-  https://github.com/aungwinthant/apilogger (in - models used, controllers invoked
 
+# test
+    'enabled_incoming' => true,
+    'enabled_outgoing' => true,
 
 # Outgoing
 - purge ?

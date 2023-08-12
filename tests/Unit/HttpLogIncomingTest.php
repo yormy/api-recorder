@@ -17,8 +17,6 @@ class HttpLogIncomingTest extends TestCase
      */
     public function HttpIncoming_Post_Log(): void
     {
-        LogHttpIncoming::truncate();
-
         $url = route('test.postroute', []);
         $this->json('POST', $url, ['hello' => 'ewlcome']);
 
@@ -39,8 +37,6 @@ class HttpLogIncomingTest extends TestCase
      */
     public function HttpIncoming_Get_Log(): void
     {
-        LogHttpIncoming::truncate();
-
         $url = route('test.getroute', []);
         $this->json('GET', $url, ['hello' => 'ewlcome']);
 

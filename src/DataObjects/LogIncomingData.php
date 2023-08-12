@@ -37,7 +37,7 @@ class LogIncomingData extends LogData
         $body = $request->all();
         $data['body'] = self::filterBody($body, $filter);
 
-        $data['body_raw'] = config('api-io-tracker.body_raw', false) ? file_get_contents('php://input') : null;
+        $data['body_raw'] = config('api-io-tracker.fields.outgoing.body_raw', false) ? file_get_contents('php://input') : null;
         $excludedMessage = config('api-io-tracker.excluded_message');
         if (isset($filter['EXCLUDE']) && in_array('BODY', $filter['EXCLUDE'])) {
             $data['body_raw'] = $excludedMessage;

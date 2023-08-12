@@ -14,7 +14,7 @@ use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 abstract class TestCase extends BaseTestCase
 {
-   // use RefreshDatabase;
+    //use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -49,6 +49,10 @@ abstract class TestCase extends BaseTestCase
         ];
 
         config(['api-io-tracker.url_guards' => $urlGuard]);
+
+        if (!defined('LARAVEL_START')) {
+            define('LARAVEL_START', microtime(true));
+        }
     }
 
     protected function setupRoutes()

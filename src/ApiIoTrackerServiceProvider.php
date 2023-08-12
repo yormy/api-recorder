@@ -5,6 +5,8 @@ namespace Yormy\ApiIoTracker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Yormy\ApiIoTracker\Contracts\ApiLoggerInterface;
+use Yormy\ApiIoTracker\Http\Middleware\LogIncomingRequest;
 use Yormy\ApiIoTracker\ServiceProviders\EventServiceProvider;
 use Yormy\ApiIoTracker\ServiceProviders\RouteServiceProvider;
 
@@ -33,9 +35,11 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
 
         $this->registerTranslations();
 
-        $this->morphMaps();
-
         Model::shouldBeStrict();
+
+        // need to use a singleton, otherwise at the terminate of the middleware
+        // a new instance is created and the models are lost
+        $this->app->singleton(LogIncomingRequest::class);
     }
 
     /**
@@ -91,21 +95,5 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
     public function registerTranslations(): void
     {
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'api-io-tracker');
-    }
-
-    private function morphMaps(): void
-    {
-        //        $logModelpath = config('chaski.models.log');
-        //        $sections = explode('\\', $logModelpath);
-        //        $LogModelName = end($sections);
-        //
-        //        $blockModelpath = config('chaski.models.block');
-        //        $sections = explode('\\', $blockModelpath);
-        //        $blockModelName = end($sections);
-        //
-        //        Relation::enforceMorphMap([
-        //            $LogModelName => $logModelpath,
-        //            $blockModelName => $blockModelpath,
-        //        ]);
     }
 }

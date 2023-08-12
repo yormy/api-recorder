@@ -31,17 +31,15 @@ class LogIncomingData extends LogData
             $data['user_type'] = get_class($user);
         }
 
-        $headers = $request->headers->all();
-        $headers = self::filterHeaders($headers, []);
-        $data['headers'] = json_encode($headers);
+        $data['headers'] = static::getHeaders($request, []);
 
         $body = $request->all();
         $data['body'] = self::filterBody($body, []);
-
         $data['body_raw'] = config('api-io-tracker.body_raw', false) ? file_get_contents('php://input') : null;
 
         $data['response'] = $response->getContent();
-        $data['response_headers'] = 'todo response headers'; //$this->headers($response);
+        $data['response_headers'] = static::getHeaders($response, []);
+
         $data['duration'] = static::getDuration();
         $data['controller'] = $controller;
         $data['action'] = $action;
@@ -49,6 +47,13 @@ class LogIncomingData extends LogData
         $data['from_ip'] = IpResolver::get($request);
 
         return $data;
+    }
+
+    private static function getHeaders($object, array $data): string
+    {
+        $headers = $object->headers->all();
+        $headers = self::filterHeaders($headers, []);
+        return json_encode($headers);
     }
 
     private static function getDuration(): float

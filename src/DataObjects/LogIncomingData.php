@@ -37,10 +37,11 @@ class LogIncomingData extends LogData
         $body = $request->all();
         $data['body'] = self::filterBody($body, $filter);
 
-        $data['body_raw'] = config('api-io-tracker.fields.outgoing.body_raw', false) ? file_get_contents('php://input') : null;
-        $excludedMessage = config('api-io-tracker.excluded_message');
-        if (isset($filter['EXCLUDE']) && in_array('BODY', $filter['EXCLUDE'])) {
-            $data['body_raw'] = $excludedMessage;
+        $data['body_raw'] = file_get_contents('php://input');
+        if (!config('api-io-tracker.fields.outgoing.body_raw')  ||
+            (isset($filter['EXCLUDE']) && in_array('BODY', $filter['EXCLUDE']))
+        ) {
+            $data['body_raw'] = config('api-io-tracker.excluded_message');
         }
 
         $data['response'] = self::filterResponse($response->getContent(), $filter);

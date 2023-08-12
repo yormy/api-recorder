@@ -1,5 +1,4 @@
 # Logger
--add incoming logger
 -configure aan/uit zetten incoming/outgoing logger/ encryption
 
 # test

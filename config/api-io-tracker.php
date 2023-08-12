@@ -89,7 +89,7 @@ return [
     */
     'fields'=> [
         'outgoing' => [
-            'body_raw' => true  // raw body payload // php://input
+            'body_raw' => false  // raw body payload // php://input
         ]
     ]
 ];

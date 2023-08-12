@@ -19,9 +19,9 @@ class DatabaseLogger extends BaseLogger
         $this->logModel = $logModel;
     }
 
-    public function saveLogs(Request $request, Response|JsonResponse|RedirectResponse $response)
+    public function saveLogs(Request $request, Response|JsonResponse|RedirectResponse $response, array $data)
     {
-        $data = LogIncomingData::make($request, $response, [], $this->modelsRetrieved);
+        $data = LogIncomingData::make($request, $response, $data, $this->modelsRetrieved);
 
         $this->logModel->create($data);
     }

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Yormy\ApiIoTracker\Domain\HttpLogger\Models\LogHttpIncoming;
 use Yormy\ApiIoTracker\Services\DatabaseLogger;
+use Yormy\StringGuard\Services\UrlGuard;
 
 class LogIncomingRequest
 {
@@ -28,6 +29,16 @@ class LogIncomingRequest
 
     public function terminate(Request $request, Response|JsonResponse|RedirectResponse $response)
     {
-        $this->dblogger->saveLogs($request, $response);
+        $url = $request->url();
+        $method = $request->method();
+        $config = config('api-io-tracker.incoming_url_guards');
+        $include = UrlGuard::isIncluded($url, $method, $config);
+        $data = UrlGuard::getData($url, $method, $config);
+
+        if (!$include) {
+            return;
+        }
+
+        $this->dblogger->saveLogs($request, $response, $data);
     }
 }

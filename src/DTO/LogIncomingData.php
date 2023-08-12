@@ -15,9 +15,10 @@ class LogIncomingData extends LogData
     public static function make(
         Request $request,
         Response|JsonResponse|RedirectResponse $response,
-        array $data,
+        array $filter,
         array $modelsRetrieved
     ): array {
+
         [$controller, $action] = static::getCurrentRoute();
 
         $data = [];
@@ -31,17 +32,24 @@ class LogIncomingData extends LogData
             $data['user_type'] = get_class($user);
         }
 
-        $data['headers'] = static::getHeaders($request, []);
+        $data['headers'] = static::getHeaders($request, $filter);
 
         $body = $request->all();
-        $data['body'] = self::filterBody($body, []);
-        $data['body_raw'] = config('api-io-tracker.body_raw', false) ? file_get_contents('php://input') : null;
+        $data['body'] = self::filterBody($body, $filter);
 
-        $data['response'] = $response->getContent();
-        $data['response_headers'] = static::getHeaders($response, []);
+        $data['body_raw'] = config('api-io-tracker.body_raw', false) ? file_get_contents('php://input') : null;
+        $excludedMessage = config('api-io-tracker.excluded_message');
+        if (isset($filter['EXCLUDE']) && in_array('BODY', $filter['EXCLUDE'])) {
+            $data['body_raw'] = $excludedMessage;
+        }
+
+        $data['response'] = self::filterResponse($response->getContent(), $filter);
+        $data['response_headers'] = static::getHeaders($response, $filter);
 
         $data['duration'] = static::getDuration();
+
         $data['controller'] = $controller;
+
         $data['action'] = $action;
         $data['models_retrieved'] = $modelsRetrieved;
         $data['from_ip'] = IpResolver::get($request);
@@ -54,10 +62,10 @@ class LogIncomingData extends LogData
         return static::upperCase(config('api-io-tracker.field_masking.incoming'));
     }
 
-    private static function getHeaders($object, array $data): string
+    private static function getHeaders($object, array $filter): string
     {
         $headers = $object->headers->all();
-        $headers = self::filterHeaders($headers, []);
+        $headers = self::filterHeaders($headers, $filter);
         return json_encode($headers);
     }
 

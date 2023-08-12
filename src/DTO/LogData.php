@@ -16,10 +16,25 @@ class LogData
         return $data;
     }
 
-    protected static function filterBody(?array $body, array $data): array
+    protected static function filterResponse(?string $response, array $filter): string
     {
         $excludedMessage = config('api-io-tracker.excluded_message');
-        if (isset($data['EXCLUDE']) && in_array('BODY', $data['EXCLUDE'])) {
+        if (isset($filter['EXCLUDE']) && in_array('RESPONSE', $filter['EXCLUDE'])) {
+            return $excludedMessage;
+        }
+
+        if (empty($response)) {
+            return '';
+        }
+
+        return $response;
+    }
+
+
+    protected static function filterBody(?array $body, array $filter): array
+    {
+        $excludedMessage = config('api-io-tracker.excluded_message');
+        if (isset($filter['EXCLUDE']) && in_array('BODY', $filter['EXCLUDE'])) {
             return [$excludedMessage];
         }
 
@@ -28,7 +43,7 @@ class LogData
         }
 
         $bodyMaskGlobal = static::getGlobalFilter()['BODY'];
-        $bodyMaskUrl = $data['MASK']['BODY'] ?? [];
+        $bodyMaskUrl = $filter['MASK']['BODY'] ?? [];
         $bodyMask = array_merge($bodyMaskGlobal, $bodyMaskUrl);
         if (isset($bodyMask)) {
             $body = static::mask($body, $bodyMask);
@@ -37,10 +52,10 @@ class LogData
         return $body;
     }
 
-    protected static function filterHeaders(?array $headers, array $data): array
+    protected static function filterHeaders(?array $headers, array $filter): array
     {
         $excludedMessage = config('api-io-tracker.excluded_message');
-        if (isset($data['EXCLUDE']) && in_array('HEADERS', $data['EXCLUDE'])) {
+        if (isset($filter['EXCLUDE']) && in_array('HEADERS', $filter['EXCLUDE'])) {
             return [$excludedMessage];
         }
 
@@ -49,7 +64,7 @@ class LogData
         }
 
         $headersMaskGlobal = static::getGlobalFilter()['HEADERS'];
-        $headersMaskUrl = $data['MASK']['HEADERS'] ?? [];
+        $headersMaskUrl = $filter['MASK']['HEADERS'] ?? [];
         $headersMask = array_merge($headersMaskGlobal, $headersMaskUrl);
         if (isset($headersMask)) {
             $headers = static::mask($headers, $headersMask);

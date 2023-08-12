@@ -12,6 +12,12 @@ class BaseListener
 
     protected function setFilter($event)
     {
+        if (!config('api-io-tracker.enabled_outgoing')) {
+            $this->include = false;
+            $this->data = [];
+            return;
+        }
+
         $url = $event->request->url();
         $method = $event->request->method();
         $config = config('api-io-tracker.outgoing_url_guards');

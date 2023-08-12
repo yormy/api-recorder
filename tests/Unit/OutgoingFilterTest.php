@@ -9,6 +9,35 @@ use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 class OutgoingFilterTest extends TestCase
 {
+
+    /**
+     * @test
+     *
+     * @group xxx
+     */
+    public function Outgoing_Disabled_NotLogged(): void
+    {
+        $countStart = LogHttpOutgoing::count();
+
+        $urlGuard = [
+            'include' => [
+                UrlGuardConfig::make('*'),
+            ],
+            'exclude' => [
+            ],
+        ];
+
+        config(['api-io-tracker.enabled_outgoing' => false]);
+        config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
+
+        try {
+            Http::post('https://include_log.nl', ['hello' => 'kkkk']);
+        } catch (\Throwable $e) {
+        }
+        $this->assertSame($countStart, LogHttpOutgoing::count());
+    }
+
+
     /**
      * @test
      *

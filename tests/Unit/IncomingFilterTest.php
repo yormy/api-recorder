@@ -11,6 +11,33 @@ class IncomingFilterTest extends TestCase
     /**
      * @test
      *
+     * @group xxx
+     */
+    public function Incoming_Disabled_NotLogged(): void
+    {
+        $countStart = LogHttpIncoming::count();
+
+        $urlGuard = [
+            'include' => [
+                UrlGuardConfig::make('*'),
+            ],
+            'exclude' => [
+            ],
+        ];
+
+        config(['api-io-tracker.enabled_incoming' => false]);
+        config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
+
+        $url = route('test.postroute');
+        $this->json('POST', $url);
+
+        $this->assertSame($countStart, LogHttpIncoming::count());
+    }
+
+
+    /**
+     * @test
+     *
      * @group incoming
      */
     public function Incoming_UrlExcluded_NotLogged(): void

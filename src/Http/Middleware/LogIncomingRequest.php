@@ -29,6 +29,10 @@ class LogIncomingRequest
 
     public function terminate(Request $request, Response|JsonResponse|RedirectResponse $response)
     {
+        if (!config('api-io-tracker.enabled_incoming')) {
+            return;
+        }
+
         $url = $request->url();
         $method = $request->method();
         $config = config('api-io-tracker.incoming_url_guards');

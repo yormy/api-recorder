@@ -65,12 +65,10 @@ class OutgoingFilterTest extends TestCase
     /**
      * @test
      *
-     * @group outgoing-mask
+     * @group xxx
      */
     public function Outgoing_UrlFieldExcluded_Excluded(): void
     {
-        LogHttpOutgoing::truncate();
-
         $data = [
             'exclude' => [
                 'headers',
@@ -89,7 +87,7 @@ class OutgoingFilterTest extends TestCase
         config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
 
         Http::post('https://google.com', ['hello' => 'kkkk']);
-        $lastItem = LogHttpOutgoing::latest()->first();
+        $lastItem = LogHttpOutgoing::orderBy('id', 'desc')->first();
 
         $message = config('api-io-tracker.excluded_message');
 
@@ -105,8 +103,6 @@ class OutgoingFilterTest extends TestCase
      */
     public function Outgoing_UrlFieldNotExcluded_Included(): void
     {
-        LogHttpOutgoing::truncate();
-
         $data = [
             'exclude' => [],
         ];
@@ -121,7 +117,7 @@ class OutgoingFilterTest extends TestCase
         config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
 
         Http::post('https://google.com', ['hello' => 'kkkk']);
-        $lastItem = LogHttpOutgoing::latest()->first();
+        $lastItem = LogHttpOutgoing::orderBy('id', 'desc')->first();
 
         $message = config('api-io-tracker.excluded_message');
 

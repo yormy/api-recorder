@@ -67,8 +67,6 @@ class IncomingFilterTest extends TestCase
      */
     public function Incoming_UrlFieldExcluded_Excluded(): void
     {
-        LogHttpIncoming::truncate();
-
         $data = [
             'exclude' => [
                 'headers',
@@ -88,7 +86,7 @@ class IncomingFilterTest extends TestCase
 
         $url = route('test.getroute', []);
         $this->json('GET', $url, ['hello' => 'welcome']);
-        $lastItem = LogHttpIncoming::latest()->first();
+        $lastItem = LogHttpIncoming::orderBy('id', 'desc')->first();
 
         $message = config('api-io-tracker.excluded_message');
 
@@ -104,8 +102,6 @@ class IncomingFilterTest extends TestCase
      */
     public function Incoming_UrlFieldNotExcluded_Included(): void
     {
-        LogHttpIncoming::truncate();
-
         $data = [
             'exclude' => [],
         ];
@@ -121,7 +117,7 @@ class IncomingFilterTest extends TestCase
 
         $url = route('test.getroute', []);
         $this->json('GET', $url, ['hello' => 'welcome']);
-        $lastItem = LogHttpIncoming::latest()->first();
+        $lastItem = LogHttpIncoming::orderBy('id', 'desc')->first();
 
         $message = config('api-io-tracker.excluded_message');
 

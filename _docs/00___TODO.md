@@ -14,13 +14,7 @@
 - contains secrets ?
 - purge ?
 
-- mask
-- filter
-- exclude
-
-
 # Cleanup
-refactor get tdata and include in listeners
 pint
 psalm
 domain

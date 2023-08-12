@@ -2,19 +2,13 @@
 
 namespace Yormy\ApiIoTracker\Observers\Listeners;
 
-use Yormy\StringGuard\Services\UrlGuard;
-
-class HttpRequestListener
+class HttpRequestListener extends BaseListener
 {
     public function handle(object $event): void
     {
-        $url = $event->request->url();
-        $method = $event->request->method();
-        $config = config('api-io-tracker.outgoing_url_guards');
-        $include = UrlGuard::isIncluded($url, $method, $config);
-        $data = UrlGuard::getData($url, $method, $config);
+        $this->setFilter($event);
 
-        if (! $include) {
+        if (! $this->include) {
             return;
         }
     }

@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Yormy\ApiIoTracker\Http\Middleware\LogIncomingRequest;
 use Yormy\ApiIoTracker\ServiceProviders\EventServiceProvider;
 use Yormy\ApiIoTracker\ServiceProviders\RouteServiceProvider;
+use Yormy\ApiIoTracker\Services\Clients\StripeCurlClient;
 
 class ApiIoTrackerServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,9 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
         // need to use a singleton, otherwise at the terminate of the middleware
         // a new instance is created and the models are lost
         $this->app->singleton(LogIncomingRequest::class);
+
+        $stripeCurlClient = new StripeCurlClient();
+        \Stripe\ApiRequestor::setHttpClient($stripeCurlClient);
     }
 
     /**

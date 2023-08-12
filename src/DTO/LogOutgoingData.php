@@ -1,0 +1,43 @@
+<?php
+
+namespace Yormy\ApiIoTracker\DTO;
+
+use Illuminate\Http\Client\Request;
+use Illuminate\Http\Client\Response;
+use Yormy\ApiIoTracker\Services\Resolvers\UserResolver;
+
+class LogOutgoingData extends LogData
+{
+    public static function make(Request $request, ?Response $response, array $data): array
+    {
+        $headers = $request->headers();
+        $headers = self::filterHeaders($headers, $data);
+
+        $body = $request->body();
+        $body = json_decode($body, true);
+        $body = self::filterBody($body, $data);
+
+        $excludedMessage = config('api-io-tracker.excluded_message');
+        if (isset($data['EXCLUDE'])) {
+            if (in_array('RESPONSE', $data['EXCLUDE'])) {
+                $response = $excludedMessage;
+            }
+        }
+
+        $data = [
+            'url' => $request->url(),
+            'method' => $request->method(),
+            'headers' => json_encode($headers),
+            'body' => substr(json_encode($body), 0, 6000),
+            'response' => $response ? substr($response, 0, 6000) : null,
+        ];
+
+        $user = UserResolver::getCurrent();
+        if ($user) {
+            $data['user_id'] = $user->id;
+            $data['user_type'] = get_class($user);
+        }
+
+        return $data;
+    }
+}

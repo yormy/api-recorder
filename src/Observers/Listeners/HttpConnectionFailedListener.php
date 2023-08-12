@@ -12,7 +12,7 @@ class HttpConnectionFailedListener
     {
         $url = $event->request->url();
         $method = $event->request->method();
-        $config = config('api-io-tracker.url_guards');
+        $config = config('api-io-tracker.outgoing_url_guards');
         $include = UrlGuard::isIncluded($url, $method, $config);
         $data = UrlGuard::getData($url, $method, $config);
 

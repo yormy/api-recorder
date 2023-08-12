@@ -25,7 +25,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'url_guards' => [
+    'outgoing_url_guards' => [
         'include' => [
             UrlGuardConfig::make('*'),
         ],

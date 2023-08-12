@@ -41,7 +41,7 @@ class HttpLogTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.url_guards' => $urlGuard]);
+        config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
 
         $startCount = LogHttpOutgoing::count();
         Http::get($exclude);

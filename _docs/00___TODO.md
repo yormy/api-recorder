@@ -21,7 +21,6 @@
 
 # Cleanup
 refactor get tdata and include in listeners
-refactor config url guar incoming
 pint
 psalm
 domain

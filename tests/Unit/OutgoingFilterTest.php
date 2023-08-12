@@ -27,7 +27,7 @@ class OutgoingFilterTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.url_guards' => $urlGuard]);
+        config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
 
         try {
             Http::post('https://example-failed-url-test-random.nl', ['hello' => 'kkkk']);
@@ -53,7 +53,7 @@ class OutgoingFilterTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.url_guards' => $urlGuard]);
+        config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
 
         try {
             Http::post('https://include_log.nl', ['hello' => 'kkkk']);
@@ -87,7 +87,7 @@ class OutgoingFilterTest extends TestCase
             'exclude' => [
             ],
         ];
-        config(['api-io-tracker.url_guards' => $urlGuard]);
+        config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
 
         Http::post('https://google.com', ['hello' => 'kkkk']);
         $lastItem = LogHttpOutgoing::latest()->first();
@@ -120,7 +120,7 @@ class OutgoingFilterTest extends TestCase
             'exclude' => [
             ],
         ];
-        config(['api-io-tracker.url_guards' => $urlGuard]);
+        config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
 
         Http::post('https://google.com', ['hello' => 'kkkk']);
         $lastItem = LogHttpOutgoing::latest()->first();

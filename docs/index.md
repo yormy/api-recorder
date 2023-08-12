@@ -6,7 +6,7 @@ hero:
   text: ""
   tagline: api-io-tracker
   image:
-      src: docs/public/yormy.png
+      src: docs/yormy.png
       alt: api-io-tracker
   actions:
     - theme: brand

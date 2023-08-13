@@ -76,6 +76,11 @@ return [
         'url_guards' => [
             'include' => [
                 UrlGuardConfig::make('*'),
+                UrlGuardConfig::make('https://api.stripe*', ['*'], [
+                    'mask' => [
+                        'headers' => ['AUTHORIZATION'],
+                    ],
+                ]),
             ],
             'exclude' => [
                 UrlGuardConfig::make('https://example-failed*'),

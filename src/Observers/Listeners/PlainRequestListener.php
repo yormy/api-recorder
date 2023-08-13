@@ -31,7 +31,7 @@ class PlainRequestListener
             $url,
             $method,
             $event->responseCode,
-            $event->headers,
+            $this->convertHeaders($event->headers),
             $event->responseBody,
             $event->body,
             $data
@@ -41,5 +41,22 @@ class PlainRequestListener
             'status' => 'OK',
             ...$logData,
         ]);
+    }
+
+    private function convertHeaders(array $headers): array
+    {
+        $newHeaders = [];
+
+        $separator = ': ';
+        foreach ($headers as $string) {
+            $parts = explode($separator, $string);
+            $key = $parts[0];
+
+            unset($parts[0]);
+            $value = implode($separator, $parts);
+            $newHeaders[$key] = $value;
+        }
+
+        return $newHeaders;
     }
 }

@@ -2,64 +2,16 @@
 
 ![yormy](../../public/yormy.png)
 
-::: tip Definition
-
-:::
-
 ## Goal
+Easy track incoming and outgoing api calls
 
 ## Features
-
-
-# Goal
-
-# Example
-
-# Config
-    'url_guards' => [
-        'include' => [
-            UrlGuardConfig::make('*'),
-        ],
-        'exclude' => [
-            UrlGuardConfig::make('https://example-failed*'),
-        ]
-    ],
-
-# Specify which urls to include/ exclude
-More info on how to include / exclude urls [String Guard](https://yormy.github.io/string-guard/docs/)
-
-
-# Exclude fields
-```
-    UrlGuardConfig::make('*', ['*'], ['exclude' => ['headers', 'body', 'response']),
-```
-
-# Mask fields per url
-        $data = [
-            'mask' => [
-                'headers' => ['user-agent'],
-                'body' => ['hello'],
-            ]
-        ];
-
-        $urlGuard = [
-            'include' => [
-                UrlGuardConfig::make('*', ['*'], $data),
-            ],
-            'exclude' => [
-            ]
-        ];
-
-# Mask global
-    'field_masking' => [
-        'incoming' => [
-            'headers' => [],
-            'body' => [],
-            'response' => [],
-        ],
-        'outgoing' => [
-            'headers' => ['host'],
-            'body' => ['hello'],
-            'response' => [],
-        ]
-    ],
+* Track all outgoing calls
+* Track all incoming calls
+* Record headers, body, response, status codes
+* Mask certain data for privacy and security
+* Exclude certain fields completely
+* Exclude specific urls
+* Only include specific urls
+* Specify what to log per url
+* Track all stripe outgoing calls

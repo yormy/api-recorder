@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Api Io Tracker"
   text: ""
-  tagline: api-io-tracker
+  tagline: Log incoming and outgoing api calls
   image:
       src: docs/public/yormy.png
       alt: api-io-tracker

@@ -22,7 +22,7 @@ export default defineConfig({
             {
                 text: 'Introduction',
                 items: [
-                    { text: 'What is String Guard', link: '/docs/v1/introduction/what-is-api-io-tracker' },
+                    { text: 'What is Api Io Tracker', link: '/docs/v1/introduction/what-is-api-io-tracker' },
                     { text: 'Definitions', link: '/docs/v1/definitions.md' },
                     { text: 'Need Support?', link: '/docs/general/support/support-me' },
                 ]

@@ -1,5 +1,8 @@
 # Logger
-docs add stripe and config
+include all
+include stripe limited
+order is important
+
 encryption
 
 # Outgoing

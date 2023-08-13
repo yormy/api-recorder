@@ -30,6 +30,7 @@ class PlainRequestListener
             $url,
             $method,
             $event->headers,
+           $event->response,
             $event->params,
 //           $event->request,
 //           $event?->response,

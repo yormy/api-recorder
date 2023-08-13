@@ -41,8 +41,10 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
         // a new instance is created and the models are lost
         $this->app->singleton(LogIncomingRequest::class);
 
-        $stripeCurlClient = new StripeCurlClient();
-        \Stripe\ApiRequestor::setHttpClient($stripeCurlClient);
+        if( config('api-io-tracker.enabled_stripe_logging', false)) {
+            $stripeCurlClient = new StripeCurlClient();
+            \Stripe\ApiRequestor::setHttpClient($stripeCurlClient);
+        }
     }
 
     /**

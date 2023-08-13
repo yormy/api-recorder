@@ -15,6 +15,7 @@ return [
 
     'enabled_incoming' => true,
     'enabled_outgoing' => true,
+    'enabled_stripe_logging' => false,
 
     'excluded_message' => '*** EXCLUDED ***',
     'masked_message' => '**** MASKED ***',

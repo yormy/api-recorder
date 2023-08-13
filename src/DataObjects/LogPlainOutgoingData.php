@@ -10,6 +10,7 @@ class LogPlainOutgoingData extends LogData
         string $url,
         string $method,
         array $headers,
+        array $response,
         array $params,
         array $data
     ): array {
@@ -30,8 +31,8 @@ class LogPlainOutgoingData extends LogData
             'url' => $url,
             'method' => $method,
             'headers' => substr(json_encode($headers),0, 200),
-            'body' => substr(json_encode($body), 0, 6000),
-            'response' => '???',//$response ? substr($response, 0, 6000) : null,
+            'body' => substr(json_encode($body), 0, 200),
+            'response' => substr(json_encode($response),0, 600),// ? substr($response, 0, 6000) : null,
         ];
 
         $user = UserResolver::getCurrent();

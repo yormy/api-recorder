@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Yormy\ApiIoTracker\Services\Resolvers\IpResolver;
-use Yormy\ApiIoTracker\Services\Resolvers\UserResolver;
 
 class LogIncomingData extends LogData
 {
@@ -30,7 +29,7 @@ class LogIncomingData extends LogData
         );
 
         $data['body_raw'] = file_get_contents('php://input');
-        if (!config('api-io-tracker.fields.outgoing.body_raw')  ||
+        if (! config('api-io-tracker.fields.outgoing.body_raw') ||
             (isset($filter['EXCLUDE']) && in_array('BODY', $filter['EXCLUDE']))
         ) {
             $data['body_raw'] = config('api-io-tracker.excluded_message');

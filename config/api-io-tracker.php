@@ -92,9 +92,9 @@ return [
     |  Fields to log
     |--------------------------------------------------------------------------
     */
-    'fields'=> [
+    'fields' => [
         'outgoing' => [
-            'body_raw' => false  // raw body payload // php://input
-        ]
-    ]
+            'body_raw' => false,  // raw body payload // php://input
+        ],
+    ],
 ];

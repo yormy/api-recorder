@@ -4,7 +4,6 @@ namespace Yormy\ApiIoTracker\DataObjects;
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Http\Client\Response;
-use Yormy\ApiIoTracker\Services\Resolvers\UserResolver;
 
 class LogOutgoingData extends LogData
 {

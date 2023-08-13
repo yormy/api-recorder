@@ -22,7 +22,7 @@ class LogHttpIncoming extends BaseModel
         'models_retrieved',
         'from_ip',
         'user_id',
-        'user_type'
+        'user_type',
     ];
 
     protected $casts = [

@@ -9,7 +9,6 @@ use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 class OutgoingFilterTest extends TestCase
 {
-
     /**
      * @test
      *
@@ -36,7 +35,6 @@ class OutgoingFilterTest extends TestCase
         }
         $this->assertSame($countStart, LogHttpOutgoing::count());
     }
-
 
     /**
      * @test

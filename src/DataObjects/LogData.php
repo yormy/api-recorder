@@ -32,7 +32,7 @@ abstract class LogData
             'status_code' => $statusCode,
             'headers' => $headers,
             'body' => $body,
-            'response' => $response ? substr($response, 0, 6000) : null
+            'response' => $response ? substr($response, 0, 6000) : null,
         ];
 
         $user = UserResolver::getCurrent();

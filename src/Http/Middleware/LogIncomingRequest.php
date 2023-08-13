@@ -29,7 +29,7 @@ class LogIncomingRequest
 
     public function terminate(Request $request, Response|JsonResponse|RedirectResponse $response)
     {
-        if (!config('api-io-tracker.enabled_incoming')) {
+        if (! config('api-io-tracker.enabled_incoming')) {
             return;
         }
 

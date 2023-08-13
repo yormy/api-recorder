@@ -34,7 +34,6 @@ class IncomingFilterTest extends TestCase
         $this->assertSame($countStart, LogHttpIncoming::count());
     }
 
-
     /**
      * @test
      *

@@ -15,6 +15,6 @@ class LogHttpOutgoing extends BaseModel
         'body',
         'response',
         'user_id',
-        'user_type'
+        'user_type',
     ];
 }

@@ -10,9 +10,10 @@ class PlainRequestListener
 {
     public function handle(object $event): void
     {
-        if (!config('api-io-tracker.enabled_outgoing')) {
+        if (! config('api-io-tracker.enabled_outgoing')) {
             $this->include = false;
             $this->data = [];
+
             return;
         }
 
@@ -26,7 +27,7 @@ class PlainRequestListener
             return;
         }
 
-       $logData = LogPlainOutgoingData::make(
+        $logData = LogPlainOutgoingData::make(
             $url,
             $method,
             $event->responseCode,
@@ -34,7 +35,7 @@ class PlainRequestListener
             $event->responseBody,
             $event->body,
             $data
-       );
+        );
 
         LogHttpOutgoing::create([
             'status' => 'OK',

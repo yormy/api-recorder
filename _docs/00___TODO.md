@@ -1,6 +1,6 @@
 # Logger
 config clenaup
-docs add stripe
+docs add stripe and config
 encryption
 
 # Outgoing

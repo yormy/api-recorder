@@ -2,6 +2,14 @@
 
 namespace Yormy\ApiIoTracker\Models;
 
+/**
+ * Yormy\ApiIoTracker\Models\LogHttpIncoming
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|LogHttpIncoming newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LogHttpIncoming newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LogHttpIncoming query()
+ * @mixin \Eloquent
+ */
 class LogHttpIncoming extends BaseModel
 {
     protected $table = 'log_http_incoming';

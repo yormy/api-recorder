@@ -30,7 +30,7 @@ class LogOutgoingData extends LogData
             'status_code' => $statusCode,
             'url' => $request->url(),
             'method' => $request->method(),
-            'headers' => json_encode($headers),
+            'headers' => $headers,
             'body' => $body,
             'response' => $response ? substr($response, 0, 6000) : null,
         ];

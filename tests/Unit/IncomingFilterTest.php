@@ -117,7 +117,7 @@ class IncomingFilterTest extends TestCase
 
         $message = config('api-io-tracker.excluded_message');
 
-        $this->assertEquals(json_encode([$message]), $lastItem->headers);
+        $this->assertEquals($message, $lastItem->headers);
         $this->assertEquals($message, $lastItem->body);
         $this->assertEquals($message, $lastItem->response);
     }

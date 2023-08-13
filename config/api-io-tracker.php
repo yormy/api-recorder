@@ -20,6 +20,10 @@ return [
     'excluded_message' => '*** EXCLUDED ***',
     'masked_message' => '**** MASKED ***',
 
+    'max_body_size' => 5000,
+    'max_response_size' => 5000,
+    'max_header_size' => 5000,
+
     /*
     |--------------------------------------------------------------------------
     | What urls to track

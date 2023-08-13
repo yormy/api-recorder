@@ -68,7 +68,7 @@ class LogIncomingData extends LogData
         $headers = $object->headers->all();
         $headers = self::filterHeaders($headers, $filter);
 
-        return json_encode($headers);
+        return $headers;
     }
 
     private static function getDuration(): float

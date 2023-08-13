@@ -27,7 +27,7 @@ class LogData
             return '';
         }
 
-        return $response;
+        return substr($response, 0, config('api-io-tracker.max_response_size'));
     }
 
     protected static function filterBody(?array $body, array $filter): string
@@ -51,15 +51,15 @@ class LogData
         return substr(json_encode($body), 0, config('api-io-tracker.max_body_size'));
     }
 
-    protected static function filterHeaders(?array $headers, array $filter): array
+    protected static function filterHeaders(?array $headers, array $filter): string
     {
         $excludedMessage = config('api-io-tracker.excluded_message');
         if (isset($filter['EXCLUDE']) && in_array('HEADERS', $filter['EXCLUDE'])) {
-            return [$excludedMessage];
+            return $excludedMessage;
         }
 
         if (empty($headers)) {
-            return [];
+            return '';
         }
 
         $headersMaskGlobal = static::getGlobalFilter()['HEADERS'];
@@ -69,7 +69,7 @@ class LogData
             $headers = static::mask($headers, $headersMask);
         }
 
-        return $headers;
+        return substr(json_encode($headers), 0, config('api-io-tracker.max_header_size'));
     }
 
     protected static function upperCase(array $values): array

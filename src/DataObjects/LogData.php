@@ -2,8 +2,47 @@
 
 namespace Yormy\ApiIoTracker\DataObjects;
 
-class LogData
+use Yormy\ApiIoTracker\Services\Resolvers\UserResolver;
+
+abstract class LogData
 {
+    public static function makeNow(
+        string $url,
+        string $method,
+        array $headers,
+        ?string $response,
+        ?array $params,
+        array $data
+    ): array {
+        $headers = self::filterHeaders($headers, $data);
+
+        $body = $params;
+        $body = self::filterBody($body, $data);
+
+        $excludedMessage = config('api-io-tracker.excluded_message');
+        if (isset($data['EXCLUDE'])) {
+            if (in_array('RESPONSE', $data['EXCLUDE'])) {
+                $response = $excludedMessage;
+            }
+        }
+
+        $data = [
+            'url' => $url,
+            'method' => $method,
+            'headers' => $headers,
+            'body' => $body,
+            'response' => $response ? substr($response, 0, 6000) : null
+        ];
+
+        $user = UserResolver::getCurrent();
+        if ($user) {
+            $data['user_id'] = $user->id;
+            $data['user_type'] = get_class($user);
+        }
+
+        return $data;
+    }
+
     protected static function mask(array $data, array $masks): array
     {
         $message = config('api-io-tracker.masked_message');

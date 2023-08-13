@@ -19,23 +19,16 @@ class LogIncomingData extends LogData
         array $modelsRetrieved
     ): array {
 
-        [$controller, $action] = static::getCurrentRoute();
+        $data = parent::makeNow(
+            url: $request->url(),
+            method: $request->method(),
+            headers: $request->headers->all(),
+            response: $response,
+            params: $request->all(),
+            data: $filter,
+        );
 
-        $data = [];
         $data['status_code'] = $response->status();
-        $data['url'] = $request->path();
-        $data['method'] = $request->method();
-
-        $user = UserResolver::getCurrent();
-        if ($user) {
-            $data['user_id'] = $user->id;
-            $data['user_type'] = get_class($user);
-        }
-
-        $data['headers'] = static::getHeaders($request, $filter);
-
-        $body = $request->all();
-        $data['body'] = self::filterBody($body, $filter);
 
         $data['body_raw'] = file_get_contents('php://input');
         if (!config('api-io-tracker.fields.outgoing.body_raw')  ||
@@ -45,13 +38,16 @@ class LogIncomingData extends LogData
         }
 
         $data['response'] = self::filterResponse($response->getContent(), $filter);
-        $data['response_headers'] = static::getHeaders($response, $filter);
+
+        $responseHeaders = $response->headers->all();
+        $data['response_headers'] = self::filterHeaders($responseHeaders, $filter);
 
         $data['duration'] = static::getDuration();
 
+        [$controller, $action] = static::getCurrentRoute();
         $data['controller'] = $controller;
-
         $data['action'] = $action;
+
         $data['models_retrieved'] = $modelsRetrieved;
         $data['from_ip'] = IpResolver::get($request);
 
@@ -61,14 +57,6 @@ class LogIncomingData extends LogData
     protected static function getGlobalFilter(): array
     {
         return static::upperCase(config('api-io-tracker.field_masking.incoming'));
-    }
-
-    private static function getHeaders($object, array $filter): string
-    {
-        $headers = $object->headers->all();
-        $headers = self::filterHeaders($headers, $filter);
-
-        return $headers;
     }
 
     private static function getDuration(): float

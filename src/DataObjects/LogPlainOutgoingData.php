@@ -10,38 +10,18 @@ class LogPlainOutgoingData extends LogData
         string $url,
         string $method,
         array $headers,
-        array $response,
-        array $params,
-        array $data
+        string $response,
+        array $body,
+        array $filter
     ): array {
-        //$headers = $request->headers();
-        $headers = self::filterHeaders($headers, $data);
-
-        $body = $params;
-        $body = self::filterBody($body, $data);
-
-        $excludedMessage = config('api-io-tracker.excluded_message');
-        if (isset($data['EXCLUDE'])) {
-            if (in_array('RESPONSE', $data['EXCLUDE'])) {
-                $response = $excludedMessage;
-            }
-        }
-
-        $data = [
-            'url' => $url,
-            'method' => $method,
-            'headers' => $headers,
-            'body' => $body,
-            'response' => $response,// ? substr($response, 0, 6000) : null,
-        ];
-
-        $user = UserResolver::getCurrent();
-        if ($user) {
-            $data['user_id'] = $user->id;
-            $data['user_type'] = get_class($user);
-        }
-
-        return $data;
+        return parent::makeNow(
+            url: $url,
+            method: $method,
+            headers: $headers,
+            response: $response,
+            params: $body,
+            data: $filter,
+        );
     }
 
     protected static function getGlobalFilter(): array

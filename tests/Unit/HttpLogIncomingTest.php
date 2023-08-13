@@ -23,11 +23,7 @@ class HttpLogIncomingTest extends TestCase
         $lastItem = LogHttpIncoming::latest()->first();
         $this->assertSame($lastItem->status_code, 200);
         $this->assertSame($lastItem->method, 'POST');
-
-        $relativeUrl = $lastItem->url;
-        $relativeUrl = str_replace('http://localhost/', '', $relativeUrl);
-        $relativeUrl = str_replace('https://localhost/', '', $relativeUrl);
-        $this->assertSame($lastItem->url, $relativeUrl);
+        $this->assertSame($lastItem->url, $url);
     }
 
     /**
@@ -43,10 +39,15 @@ class HttpLogIncomingTest extends TestCase
         $lastItem = LogHttpIncoming::latest()->first();
         $this->assertSame($lastItem->status_code, 200);
         $this->assertSame($lastItem->method, 'GET');
+        $this->assertSame($lastItem->url, $url);
+    }
 
-        $relativeUrl = $lastItem->url;
+    private function toRelativeUrl(string $url): string
+    {
+        $relativeUrl = $url;
         $relativeUrl = str_replace('http://localhost/', '', $relativeUrl);
         $relativeUrl = str_replace('https://localhost/', '', $relativeUrl);
-        $this->assertSame($lastItem->url, $relativeUrl);
+
+        return $relativeUrl;
     }
 }

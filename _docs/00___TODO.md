@@ -1,5 +1,5 @@
 # Logger
--configure aan/uit zetten incoming/outgoing logger/ encryption
+encryption
 
 # Outgoing
 - purge ?

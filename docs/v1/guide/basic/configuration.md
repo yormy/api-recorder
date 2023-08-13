@@ -80,3 +80,22 @@ In order to log stripe outgoing calls you need to specifically enable this
         'enabled' => false,
     ],
 ```
+
+::: danger SECURITY WARNING
+Make sure you mask the authorization header, otherwize your stipe api key is logged in the database
+:::
+```php
+    'outgoing' => [
+        'enabled' => true,
+        ...
+
+        'url_guards' => [
+            'include' => [
+                UrlGuardConfig::make('https://api.stripe*', ['*'], [
+                    'mask' => [
+                        'headers' => ['AUTHORIZATION'], // [!code focus] // MASK FOR SECURITY
+                    ],
+                ]),
+            ],
+        ...
+```

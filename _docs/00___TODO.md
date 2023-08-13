@@ -1,8 +1,4 @@
 # Logger
-include all
-include stripe limited
-order is important
-
 encryption
 
 # Outgoing

@@ -20,7 +20,30 @@ return [
     |
     */
     'incoming' => [
-        'enabled' => true
+        'enabled' => true,
+
+        'prune_after_days' => 365,
+
+        /*
+        |--------------------------------------------------------------------------
+        | What fields to mask
+        |--------------------------------------------------------------------------
+        | ie: password
+        */
+        'mask' => [
+            'headers' => [],
+            'body' => [],
+            'response' => [],
+        ],
+
+        'url_guards' => [
+            'include' => [
+                UrlGuardConfig::make('*'),
+            ],
+            'exclude' => [
+                UrlGuardConfig::make('https://example-failed*'),
+            ],
+        ],
     ],
 
     /*
@@ -30,71 +53,54 @@ return [
     |
     */
     'outgoing' => [
-        'enabled' => true
+        'enabled' => true,
+
+        'prune_after_days' => 365,
+
+        /*
+        |--------------------------------------------------------------------------
+        | What fields to mask
+        |--------------------------------------------------------------------------
+        | ie: password
+        */
+        'mask' => [
+            'headers' => [],
+            'body' => [],
+            'response' => [],
+        ],
+
+        'fields' => [
+            'body_raw' => false,  // log raw body payload // php://input
+        ],
+
+        'url_guards' => [
+            'include' => [
+                UrlGuardConfig::make('*'),
+            ],
+            'exclude' => [
+                UrlGuardConfig::make('https://example-failed*'),
+            ],
+        ],
     ],
-
-
-
-
 
     /*
     |--------------------------------------------------------------------------
-    | Enabled
+    | The strings that are in the database when a field is excluded or masked
     |--------------------------------------------------------------------------
     |
     */
-    'enabled_stripe_logging' => false,
-
     'excluded_message' => '*** EXCLUDED ***',
     'masked_message' => '**** MASKED ***',
 
-    'max_body_size' => 5000,
-    'max_response_size' => 5000,
-    'max_header_size' => 5000,
-
     /*
     |--------------------------------------------------------------------------
-    | What urls to track
+    | Limit the sizes of the log
     |--------------------------------------------------------------------------
     |
     */
-    'outgoing_url_guards' => [
-        'include' => [
-            UrlGuardConfig::make('*'),
-        ],
-        'exclude' => [
-            UrlGuardConfig::make('https://example-failed*'),
-        ],
-    ],
-
-    'incoming_url_guards' => [
-        'include' => [
-            UrlGuardConfig::make('*'),
-        ],
-        'exclude' => [
-            UrlGuardConfig::make('https://example-failed*'),
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | What fields to mask
-    |--------------------------------------------------------------------------
-    | ie: password
-    */
-
-    'field_masking' => [
-        'incoming' => [
-            'headers' => [],
-            'body' => [],
-            'response' => [],
-        ],
-        'outgoing' => [
-            'headers' => [],
-            'body' => [],
-            'response' => [],
-        ],
-    ],
+    'max_body_size' => 5000,
+    'max_response_size' => 5000,
+    'max_header_size' => 5000,
 
     /*
     |--------------------------------------------------------------------------
@@ -109,20 +115,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Prune
+    | Stripe specific
     |--------------------------------------------------------------------------
     |
     */
-    'prune_after_days' => 365,
-
-    /*
-    |--------------------------------------------------------------------------
-    |  Fields to log
-    |--------------------------------------------------------------------------
-    */
-    'fields' => [
-        'outgoing' => [
-            'body_raw' => false,  // raw body payload // php://input
-        ],
+    'stripe' => [
+        'enabled' => false,
     ],
 ];

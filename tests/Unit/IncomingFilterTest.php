@@ -26,7 +26,7 @@ class IncomingFilterTest extends TestCase
         ];
 
         config(['api-io-tracker.incoming.enabled' => false]);
-        config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
+        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.postroute');
         $this->json('POST', $url);
@@ -53,7 +53,7 @@ class IncomingFilterTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
+        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.postroute');
         $this->json('POST', $url);
@@ -78,7 +78,7 @@ class IncomingFilterTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
+        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.postroute');
         $this->json('POST', $url);
@@ -108,7 +108,7 @@ class IncomingFilterTest extends TestCase
             'exclude' => [
             ],
         ];
-        config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
+        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.getroute', []);
         $this->json('GET', $url, ['hello' => 'welcome']);
@@ -139,7 +139,7 @@ class IncomingFilterTest extends TestCase
             'exclude' => [
             ],
         ];
-        config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
+        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.getroute', []);
         $this->json('GET', $url, ['hello' => 'welcome']);

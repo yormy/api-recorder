@@ -19,7 +19,7 @@ class PlainRequestListener
 
         $url = $event->url;
         $method = $event->method;
-        $config = config('api-io-tracker.outgoing_url_guards');
+        $config = config('api-io-tracker.outgoing.url_guards');
         $include = UrlGuard::isIncluded($url, $method, $config);
         $data = UrlGuard::getData($url, $method, $config);
 

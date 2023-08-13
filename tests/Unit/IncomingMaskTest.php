@@ -30,7 +30,7 @@ class IncomingMaskTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
+        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.postroute');
         $this->json('POST', $url, ['hello' => 'kkk']);

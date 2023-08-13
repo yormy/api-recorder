@@ -35,7 +35,7 @@ class LogIncomingRequest
 
         $url = $request->url();
         $method = $request->method();
-        $config = config('api-io-tracker.incoming_url_guards');
+        $config = config('api-io-tracker.incoming.url_guards');
         $include = UrlGuard::isIncluded($url, $method, $config);
         $data = UrlGuard::getData($url, $method, $config);
 

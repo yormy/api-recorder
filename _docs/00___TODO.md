@@ -1,5 +1,4 @@
 # Logger
-config clenaup
 docs add stripe and config
 encryption
 

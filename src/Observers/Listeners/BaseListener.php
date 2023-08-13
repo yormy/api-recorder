@@ -21,7 +21,7 @@ class BaseListener
 
         $url = $event->request->url();
         $method = $event->request->method();
-        $config = config('api-io-tracker.outgoing_url_guards');
+        $config = config('api-io-tracker.outgoing.url_guards');
         $this->include = UrlGuard::isIncluded($url, $method, $config);
         $this->data = UrlGuard::getData($url, $method, $config);
     }

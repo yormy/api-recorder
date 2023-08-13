@@ -29,7 +29,7 @@ class LogIncomingData extends LogData
         );
 
         $data['body_raw'] = file_get_contents('php://input');
-        if (! config('api-io-tracker.fields.outgoing.body_raw') ||
+        if (! config('api-io-tracker.outgoing.fields.body_raw') ||
             (isset($filter['EXCLUDE']) && in_array('BODY', $filter['EXCLUDE']))
         ) {
             $data['body_raw'] = config('api-io-tracker.excluded_message');
@@ -54,7 +54,7 @@ class LogIncomingData extends LogData
 
     protected static function getGlobalFilter(): array
     {
-        return static::upperCase(config('api-io-tracker.field_masking.incoming'));
+        return static::upperCase(config('api-io-tracker.incoming.mask'));
     }
 
     private static function getDuration(): float

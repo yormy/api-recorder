@@ -26,6 +26,6 @@ class LogPlainOutgoingData extends LogData
 
     protected static function getGlobalFilter(): array
     {
-        return static::upperCase(config('api-io-tracker.field_masking.outgoing'));
+        return static::upperCase(config('api-io-tracker.outgoing.mask'));
     }
 }

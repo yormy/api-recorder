@@ -31,7 +31,7 @@ class OutgoingMaskTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
+        config(['api-io-tracker.outgoing.url_guards' => $urlGuard]);
 
         Http::post('https://google.com', ['welcome' => 'message', 'hello' => 'kkkk']);
         $lastItem = LogHttpOutgoing::orderBy('id', 'desc')->first();

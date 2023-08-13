@@ -11,12 +11,11 @@ abstract class LogData
         string $method,
         array $headers,
         ?string $response,
-        ?array $params,
+        ?array $body,
         array $data
     ): array {
         $headers = self::filterHeaders($headers, $data);
 
-        $body = $params;
         $body = self::filterBody($body, $data);
 
         $excludedMessage = config('api-io-tracker.excluded_message');

@@ -2,8 +2,6 @@
 
 namespace Yormy\ApiIoTracker\DataObjects;
 
-use Yormy\ApiIoTracker\Services\Resolvers\UserResolver;
-
 class LogPlainOutgoingData extends LogData
 {
     public static function make(
@@ -19,7 +17,7 @@ class LogPlainOutgoingData extends LogData
             method: $method,
             headers: $headers,
             response: $response,
-            params: $body,
+            body: $body,
             data: $filter,
         );
     }

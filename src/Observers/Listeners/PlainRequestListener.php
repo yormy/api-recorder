@@ -30,15 +30,14 @@ class PlainRequestListener
             $url,
             $method,
             $event->headers,
-           $event->response,
-            $event->params,
-//           $event->request,
-//           $event?->response,
+            $event->responseBody,
+            $event->body,
            $data
        );
 
         LogHttpOutgoing::create([
             'status' => 'OK',
+            'status_code' => $event->responseCode,
             ...$logData,
         ]);
     }

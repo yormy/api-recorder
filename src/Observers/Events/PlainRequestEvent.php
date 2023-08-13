@@ -14,8 +14,10 @@ class PlainRequestEvent
         public readonly string $method,
         public readonly string $url,
         public readonly array $headers,
-        public readonly string $response,
-        public readonly array $params,
+        public readonly array $body,
+        public readonly int $responseCode,
+        public readonly string $responseHeaders,
+        public readonly string $responseBody,
         public readonly string $hasFile,
     ) {
     }

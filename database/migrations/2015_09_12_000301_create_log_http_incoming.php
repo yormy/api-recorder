@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('method');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('user_type')->nullable();
-            $table->string('headers')->nullable();
+            $table->longText('headers')->nullable();
             $table->longText('body')->nullable();
             $table->longText('body_raw')->nullable();
             $table->longText('response')->nullable();

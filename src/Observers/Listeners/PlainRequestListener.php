@@ -22,22 +22,22 @@ class PlainRequestListener
         $include = UrlGuard::isIncluded($url, $method, $config);
         $data = UrlGuard::getData($url, $method, $config);
 
-//        if (! $this->include) {
-//            return;
-//        }
+        if (! $include) {
+            return;
+        }
 
        $logData = LogPlainOutgoingData::make(
             $url,
             $method,
+            $event->responseCode,
             $event->headers,
             $event->responseBody,
             $event->body,
-           $data
+            $data
        );
 
         LogHttpOutgoing::create([
             'status' => 'OK',
-            'status_code' => $event->responseCode,
             ...$logData,
         ]);
     }

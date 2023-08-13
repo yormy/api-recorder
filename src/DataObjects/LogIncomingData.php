@@ -22,13 +22,12 @@ class LogIncomingData extends LogData
         $data = parent::makeNow(
             url: $request->url(),
             method: $request->method(),
+            statusCode: $response->status(),
             headers: $request->headers->all(),
             response: $response,
-            params: $request->all(),
+            body: $request->all(),
             data: $filter,
         );
-
-        $data['status_code'] = $response->status();
 
         $data['body_raw'] = file_get_contents('php://input');
         if (!config('api-io-tracker.fields.outgoing.body_raw')  ||

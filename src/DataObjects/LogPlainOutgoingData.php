@@ -7,6 +7,7 @@ class LogPlainOutgoingData extends LogData
     public static function make(
         string $url,
         string $method,
+        int $statusCode,
         array $headers,
         string $response,
         array $body,
@@ -15,6 +16,7 @@ class LogPlainOutgoingData extends LogData
         return parent::makeNow(
             url: $url,
             method: $method,
+            statusCode: $statusCode,
             headers: $headers,
             response: $response,
             body: $body,

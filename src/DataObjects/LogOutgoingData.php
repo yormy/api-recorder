@@ -16,15 +16,12 @@ class LogOutgoingData extends LogData
         $data = parent::makeNow(
             url: $request->url(),
             method: $request->method(),
+            statusCode: $response ? $response->status() : 0,
             headers: $request->headers(),
             response: $response,
-            params: $body,
+            body: $body,
             data: $data,
         );
-
-        $statusCode = $response ? $response->status() : 0;
-
-        $data['status_code'] = $statusCode;
 
         return $data;
     }

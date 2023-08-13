@@ -9,6 +9,7 @@ abstract class LogData
     public static function makeNow(
         string $url,
         string $method,
+        int $statusCode,
         array $headers,
         ?string $response,
         ?array $body,
@@ -28,6 +29,7 @@ abstract class LogData
         $data = [
             'url' => $url,
             'method' => $method,
+            'status_code' => $statusCode,
             'headers' => $headers,
             'body' => $body,
             'response' => $response ? substr($response, 0, 6000) : null

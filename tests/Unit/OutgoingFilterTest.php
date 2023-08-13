@@ -26,7 +26,7 @@ class OutgoingFilterTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.enabled_outgoing' => false]);
+        config(['api-io-tracker.outgoing.enabled' => false]);
         config(['api-io-tracker.outgoing_url_guards' => $urlGuard]);
 
         try {

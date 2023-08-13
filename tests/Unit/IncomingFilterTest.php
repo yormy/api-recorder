@@ -25,7 +25,7 @@ class IncomingFilterTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.enabled_incoming' => false]);
+        config(['api-io-tracker.incoming.enabled' => false]);
         config(['api-io-tracker.incoming_url_guards' => $urlGuard]);
 
         $url = route('test.postroute');

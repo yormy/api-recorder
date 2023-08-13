@@ -12,7 +12,7 @@ class BaseListener
 
     protected function setFilter($event)
     {
-        if (! config('api-io-tracker.enabled_outgoing')) {
+        if (! config('api-io-tracker.enabled') || !config('api-io-tracker.outgoing.enabled')) {
             $this->include = false;
             $this->data = [];
 

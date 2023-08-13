@@ -11,12 +11,13 @@ return new class extends Migration
         Schema::create('log_http_outgoing', function (Blueprint $table) {
             $table->id();
             $table->string('status');
+            $table->integer('status_code');
             $table->string('url');
             $table->string('method');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('user_type')->nullable();
             $table->string('headers')->nullable();
-            $table->string('body')->nullable();
+            $table->longtext('body')->nullable();
             $table->longText('response')->nullable();
 
             $table->timestamps();

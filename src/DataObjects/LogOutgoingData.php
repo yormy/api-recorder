@@ -17,6 +17,8 @@ class LogOutgoingData extends LogData
         $body = json_decode($body, true);
         $body = self::filterBody($body, $data);
 
+        $statusCode = $response ? $response->status() : 0;
+
         $excludedMessage = config('api-io-tracker.excluded_message');
         if (isset($data['EXCLUDE'])) {
             if (in_array('RESPONSE', $data['EXCLUDE'])) {
@@ -25,6 +27,7 @@ class LogOutgoingData extends LogData
         }
 
         $data = [
+            'status_code' => $statusCode,
             'url' => $request->url(),
             'method' => $request->method(),
             'headers' => json_encode($headers),

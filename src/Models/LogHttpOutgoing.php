@@ -7,6 +7,7 @@ class LogHttpOutgoing extends BaseModel
     protected $table = 'log_http_outgoing';
 
     protected $fillable = [
+        'status_code',
         'status',
         'url',
         'method',

@@ -22,9 +22,8 @@ return new class extends Migration
             $table->longText('body')->nullable();
             $table->longText('body_raw')->nullable();
             $table->longText('response')->nullable();
-            $table->longText('response_headers')->nullable();
+            $table->string('response_headers')->nullable();
             $table->string('duration');
-
             $table->string('controller');
             $table->string('action');
             $table->string('models_retrieved');

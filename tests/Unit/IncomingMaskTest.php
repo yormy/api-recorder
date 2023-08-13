@@ -39,6 +39,6 @@ class IncomingMaskTest extends TestCase
 
         $message = config('api-io-tracker.masked_message');
         $this->assertEquals(json_decode($lastItem->headers, true)['user-agent'], $message);
-        $this->assertEquals($lastItem->body['hello'], $message);
+        $this->assertEquals(json_decode($lastItem->body, true)['hello'], $message);
     }
 }

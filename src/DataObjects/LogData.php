@@ -30,15 +30,15 @@ class LogData
         return $response;
     }
 
-    protected static function filterBody(?array $body, array $filter): array
+    protected static function filterBody(?array $body, array $filter): string
     {
         $excludedMessage = config('api-io-tracker.excluded_message');
         if (isset($filter['EXCLUDE']) && in_array('BODY', $filter['EXCLUDE'])) {
-            return [$excludedMessage];
+            return $excludedMessage;
         }
 
         if (empty($body)) {
-            return [];
+            return '';
         }
 
         $bodyMaskGlobal = static::getGlobalFilter()['BODY'];
@@ -48,7 +48,7 @@ class LogData
             $body = static::mask($body, $bodyMask);
         }
 
-        return $body;
+        return substr(json_encode($body), 0, config('api-io-tracker.max_body_size'));
     }
 
     protected static function filterHeaders(?array $headers, array $filter): array

@@ -12,7 +12,7 @@ namespace Yormy\ApiIoTracker\Models;
  */
 class LogHttpOutgoing extends BaseModel
 {
-    protected $table = 'log_http_outgoing';
+    protected $table = 'apiio_http_outgoing';
 
     protected $fillable = [
         'status_code',

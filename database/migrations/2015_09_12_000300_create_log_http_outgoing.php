@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('log_http_outgoing', function (Blueprint $table) {
+        Schema::create('apiio_http_outgoing', function (Blueprint $table) {
             $table->id();
             $table->string('status');
             $table->integer('status_code');

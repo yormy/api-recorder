@@ -35,8 +35,6 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
 
         $this->registerTranslations();
 
-        Model::shouldBeStrict();
-
         // need to use a singleton, otherwise at the terminate of the middleware
         // a new instance is created and the models are lost
         $this->app->singleton(LogIncomingRequest::class);

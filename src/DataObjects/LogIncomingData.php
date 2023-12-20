@@ -46,7 +46,7 @@ class LogIncomingData extends LogData
         $data['controller'] = $controller;
         $data['action'] = $action;
 
-        $data['models_retrieved'] = $modelsRetrieved;
+        $data['models_retrieved'] = substr(json_encode($modelsRetrieved), 0, config('api-io-tracker.max_models_retrieved_size', 200));
         $data['from_ip'] = IpResolver::get($request);
 
         return $data;

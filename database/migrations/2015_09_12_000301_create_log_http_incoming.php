@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('duration');
             $table->string('controller');
             $table->string('action');
-            $table->string('models_retrieved');
+            $table->longText('models_retrieved');
             $table->string('from_ip');
             $table->timestamps();
         });

@@ -106,6 +106,7 @@ return [
     'max_body_size' => 5000,
     'max_response_size' => 5000,
     'max_header_size' => 5000,
+    'max_models_retrieved_size' => 5000,
 
     /*
     |--------------------------------------------------------------------------

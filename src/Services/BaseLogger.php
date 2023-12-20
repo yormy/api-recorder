@@ -16,13 +16,17 @@ abstract class BaseLogger
 
     protected function listeners()
     {
-        Event::listen('eloquent.*', function ($event, $models) {
-            if (Str::contains($event, 'eloquent.retrieved')) {
-                foreach (array_filter($models) as $model) {
-                    $class = get_class($model);
-                    $this->modelsRetrieved[$class] = ($this->modelsRetrieved[$class] ?? 0) + 1;
+        try {
+            Event::listen('eloquent.*', function ($event, $models) {
+                if (Str::contains($event, 'eloquent.retrieved')) {
+                    foreach (array_filter($models) as $model) {
+                        $class = get_class($model);
+                        $this->modelsRetrieved[$class] = ($this->modelsRetrieved[$class] ?? 0) + 1;
+                    }
                 }
-            }
-        });
+            });
+        } catch (\Throwable $e) {
+            // ... silent discard message, to handle errors on the clients models
+        }
     }
 }

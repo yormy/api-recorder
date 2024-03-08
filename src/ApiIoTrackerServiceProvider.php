@@ -1,18 +1,18 @@
 <?php
 
-namespace Yormy\ApiIoTracker;
+namespace Yormy\ApiRecorder;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Yormy\ApiIoTracker\Http\Middleware\LogIncomingRequest;
-use Yormy\ApiIoTracker\ServiceProviders\EventServiceProvider;
-use Yormy\ApiIoTracker\ServiceProviders\RouteServiceProvider;
-use Yormy\ApiIoTracker\Services\Clients\StripeCurlClient;
+use Yormy\ApiRecorder\Http\Middleware\LogIncomingRequest;
+use Yormy\ApiRecorder\ServiceProviders\EventServiceProvider;
+use Yormy\ApiRecorder\ServiceProviders\RouteServiceProvider;
+use Yormy\ApiRecorder\Services\Clients\StripeCurlClient;
 
-class ApiIoTrackerServiceProvider extends ServiceProvider
+class ApiRecorderServiceProvider extends ServiceProvider
 {
-    const CONFIG_FILE = __DIR__.'/../config/api-io-tracker.php';
+    const CONFIG_FILE = __DIR__.'/../config/api-recorder.php';
 
     const CONFIG_IDE_HELPER_FILE = __DIR__.'/../config/ide-helper.php';
 
@@ -31,7 +31,7 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
 
         $this->registerListeners();
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'api-io-tracker');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'api-recorder');
 
         $this->registerTranslations();
 
@@ -39,7 +39,7 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
         // a new instance is created and the models are lost
         $this->app->singleton(LogIncomingRequest::class);
 
-        if (config('api-io-tracker.stripe.enabled', false)) {
+        if (config('api-recorder.stripe.enabled', false)) {
             $stripeCurlClient = new StripeCurlClient();
             \Stripe\ApiRequestor::setHttpClient($stripeCurlClient);
         }
@@ -54,7 +54,7 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(static::CONFIG_FILE, 'api-io-tracker');
+        $this->mergeConfigFrom(static::CONFIG_FILE, 'api-recorder');
         $this->mergeConfigFrom(static::CONFIG_IDE_HELPER_FILE, 'ide-helper');
 
         $this->app->register(EventServiceProvider::class);
@@ -65,7 +65,7 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                self::CONFIG_FILE => config_path('api-io-tracker.php'),
+                self::CONFIG_FILE => config_path('api-recorder.php'),
             ], 'config');
 
             $this->publishes([
@@ -73,11 +73,11 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
             ], 'migrations');
 
             $this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/api-io-tracker-views'),
+                __DIR__.'/../resources/views' => resource_path('views/vendor/api-recorder-views'),
             ], 'views');
 
             $this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/api-io-tracker'),
+                __DIR__.'/../resources/lang' => resource_path('lang/vendor/api-recorder'),
             ], 'translations');
         }
     }
@@ -101,6 +101,6 @@ class ApiIoTrackerServiceProvider extends ServiceProvider
 
     public function registerTranslations(): void
     {
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'api-io-tracker');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'api-recorder');
     }
 }

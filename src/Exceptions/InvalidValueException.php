@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Exceptions;
+namespace Yormy\ApiRecorder\Exceptions;
 
 use Exception;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Tests\Setup\Http\Controllers;
+namespace Yormy\ApiRecorder\Tests\Setup\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Yormy\ApiIoTracker\Models\LogHttpIncoming;
-use Yormy\ApiIoTracker\Models\LogHttpOutgoing;
+use Yormy\ApiRecorder\Models\LogHttpIncoming;
+use Yormy\ApiRecorder\Models\LogHttpOutgoing;
 
 class TestController extends Controller
 {

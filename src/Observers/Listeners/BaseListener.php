@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Observers\Listeners;
+namespace Yormy\ApiRecorder\Observers\Listeners;
 
 use Yormy\StringGuard\Services\UrlGuard;
 
@@ -12,7 +12,7 @@ class BaseListener
 
     protected function setFilter($event)
     {
-        if (! config('api-io-tracker.enabled') || !config('api-io-tracker.outgoing.enabled')) {
+        if (! config('api-recorder.enabled') || !config('api-recorder.outgoing.enabled')) {
             $this->include = false;
             $this->data = [];
 
@@ -21,7 +21,7 @@ class BaseListener
 
         $url = $event->request->url();
         $method = $event->request->method();
-        $config = config('api-io-tracker.outgoing.url_guards');
+        $config = config('api-recorder.outgoing.url_guards');
         $this->include = UrlGuard::isIncluded($url, $method, $config);
         $this->data = UrlGuard::getData($url, $method, $config);
     }

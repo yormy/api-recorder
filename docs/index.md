@@ -7,14 +7,14 @@ hero:
   tagline: Log incoming and outgoing api calls
   image:
       src: docs/public/yormy.png
-      alt: api-io-tracker
+      alt: api-recorder
   actions:
     - theme: brand
       text: Get Started
-      link: docs/v1/introduction/what-is-api-io-tracker
+      link: docs/v1/introduction/what-is-api-recorder
     - theme: alt
       text: View on GitHub
-      link: https://github.com/yormy/api-io-tracker/
+      link: https://github.com/yormy/api-recorder/
 
 features:
   - title: Implementable

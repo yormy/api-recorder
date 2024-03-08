@@ -2,12 +2,12 @@
 
 ## I love your feedback
 I love feedback from you !
-Your feedback in how you use api-io-tracker, features you need, additions or changes in code are highly appreciated.
+Your feedback in how you use api-recorder, features you need, additions or changes in code are highly appreciated.
 Both positive and negative feedback is welcome. I am a human being, so yes I also like to hear when you enjoy my work.
-* If you **LIKE** api-io-tracker, please Star it on github and leave a comment on why and how you like it, and tell your friends about api-io-tracker, write an article about how you used api-io-tracker or whatever to get the word out
+* If you **LIKE** api-recorder, please Star it on github and leave a comment on why and how you like it, and tell your friends about api-recorder, write an article about how you used api-recorder or whatever to get the word out
 * If you do **NOT LIKE** it, please also let me know and why and what changes you would like to see.
 
-Only with your feedback api-io-tracker can grow and help more sites to be secure.
+Only with your feedback api-recorder can grow and help more sites to be secure.
 
 Don't be a stranger, reach out and share your thoughts with me on github
 

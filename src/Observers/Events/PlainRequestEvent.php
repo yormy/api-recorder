@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Observers\Events;
+namespace Yormy\ApiRecorder\Observers\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;

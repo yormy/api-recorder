@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Models;
+namespace Yormy\ApiRecorder\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

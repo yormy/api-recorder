@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\ServiceProviders;
+namespace Yormy\ApiRecorder\ServiceProviders;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 

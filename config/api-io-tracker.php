@@ -1,7 +1,7 @@
 <?php
 
-use Yormy\ApiIoTracker\Services\Resolvers\Encryptor;
-use Yormy\ApiIoTracker\Services\Resolvers\IpResolver;
+use Yormy\ApiRecorder\Services\Resolvers\Encryptor;
+use Yormy\ApiRecorder\Services\Resolvers\IpResolver;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 return [

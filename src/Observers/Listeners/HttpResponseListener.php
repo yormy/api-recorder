@@ -1,9 +1,9 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Observers\Listeners;
+namespace Yormy\ApiRecorder\Observers\Listeners;
 
-use Yormy\ApiIoTracker\DataObjects\LogOutgoingData;
-use Yormy\ApiIoTracker\Models\LogHttpOutgoing;
+use Yormy\ApiRecorder\DataObjects\LogOutgoingData;
+use Yormy\ApiRecorder\Models\LogHttpOutgoing;
 
 class HttpResponseListener extends BaseListener
 {

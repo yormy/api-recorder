@@ -1,9 +1,9 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Tests\Unit;
+namespace Yormy\ApiRecorder\Tests\Unit;
 
-use Yormy\ApiIoTracker\Models\LogHttpIncoming;
-use Yormy\ApiIoTracker\Tests\TestCase;
+use Yormy\ApiRecorder\Models\LogHttpIncoming;
+use Yormy\ApiRecorder\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 class IncomingFilterTest extends TestCase
@@ -25,8 +25,8 @@ class IncomingFilterTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.incoming.enabled' => false]);
-        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
+        config(['api-recorder.incoming.enabled' => false]);
+        config(['api-recorder.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.postroute');
         $this->json('POST', $url);
@@ -53,7 +53,7 @@ class IncomingFilterTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
+        config(['api-recorder.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.postroute');
         $this->json('POST', $url);
@@ -78,7 +78,7 @@ class IncomingFilterTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
+        config(['api-recorder.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.postroute');
         $this->json('POST', $url);
@@ -108,13 +108,13 @@ class IncomingFilterTest extends TestCase
             'exclude' => [
             ],
         ];
-        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
+        config(['api-recorder.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.getroute', []);
         $this->json('GET', $url, ['hello' => 'welcome']);
         $lastItem = LogHttpIncoming::orderBy('id', 'desc')->first();
 
-        $message = config('api-io-tracker.excluded_message');
+        $message = config('api-recorder.excluded_message');
 
         $this->assertEquals($message, $lastItem->headers);
         $this->assertEquals($message, $lastItem->body);
@@ -139,13 +139,13 @@ class IncomingFilterTest extends TestCase
             'exclude' => [
             ],
         ];
-        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
+        config(['api-recorder.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.getroute', []);
         $this->json('GET', $url, ['hello' => 'welcome']);
         $lastItem = LogHttpIncoming::orderBy('id', 'desc')->first();
 
-        $message = config('api-io-tracker.excluded_message');
+        $message = config('api-recorder.excluded_message');
 
         $this->assertNotEquals(json_encode([$message]), $lastItem->headers);
         $this->assertNotEquals(json_encode([$message]), json_encode($lastItem->body));

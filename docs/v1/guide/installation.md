@@ -1,8 +1,8 @@
 # Installation
 
-api-io-tracker can be installed through composer
+api-recorder can be installed through composer
 ```bash
-composer require yormy/api-io-tracker
+composer require yormy/api-recorder
 ```
 
 # Preparing the database

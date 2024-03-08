@@ -1,9 +1,9 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Tests\Unit;
+namespace Yormy\ApiRecorder\Tests\Unit;
 
-use Yormy\ApiIoTracker\Models\LogHttpIncoming;
-use Yormy\ApiIoTracker\Tests\TestCase;
+use Yormy\ApiRecorder\Models\LogHttpIncoming;
+use Yormy\ApiRecorder\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 class IncomingMaskTest extends TestCase
@@ -30,14 +30,14 @@ class IncomingMaskTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.incoming.url_guards' => $urlGuard]);
+        config(['api-recorder.incoming.url_guards' => $urlGuard]);
 
         $url = route('test.postroute');
         $this->json('POST', $url, ['hello' => 'kkk']);
 
         $lastItem = LogHttpIncoming::orderBy('id', 'desc')->first();
 
-        $message = config('api-io-tracker.masked_message');
+        $message = config('api-recorder.masked_message');
         $this->assertEquals(json_decode($lastItem->headers, true)['user-agent'], $message);
         $this->assertEquals(json_decode($lastItem->body, true)['hello'], $message);
     }

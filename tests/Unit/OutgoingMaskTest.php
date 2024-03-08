@@ -1,10 +1,10 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Tests\Unit;
+namespace Yormy\ApiRecorder\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use Yormy\ApiIoTracker\Models\LogHttpOutgoing;
-use Yormy\ApiIoTracker\Tests\TestCase;
+use Yormy\ApiRecorder\Models\LogHttpOutgoing;
+use Yormy\ApiRecorder\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 class OutgoingMaskTest extends TestCase
@@ -31,12 +31,12 @@ class OutgoingMaskTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.outgoing.url_guards' => $urlGuard]);
+        config(['api-recorder.outgoing.url_guards' => $urlGuard]);
 
         Http::post('https://google.com', ['welcome' => 'message', 'hello' => 'kkkk']);
         $lastItem = LogHttpOutgoing::orderBy('id', 'desc')->first();
 
-        $message = config('api-io-tracker.masked_message');
+        $message = config('api-recorder.masked_message');
         $this->assertEquals(json_decode($lastItem->headers, true)['User-Agent'], $message);
         $this->assertEquals(json_decode($lastItem->body, true)['hello'], $message);
     }

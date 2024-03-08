@@ -1,8 +1,8 @@
 <?php
 
-namespace Yormy\ApiIoTracker\DataObjects;
+namespace Yormy\ApiRecorder\DataObjects;
 
-use Yormy\ApiIoTracker\Services\Resolvers\UserResolver;
+use Yormy\ApiRecorder\Services\Resolvers\UserResolver;
 
 abstract class LogData
 {
@@ -19,7 +19,7 @@ abstract class LogData
 
         $body = self::filterBody($body, $data);
 
-        $excludedMessage = config('api-io-tracker.excluded_message');
+        $excludedMessage = config('api-recorder.excluded_message');
         if (isset($data['EXCLUDE'])) {
             if (in_array('RESPONSE', $data['EXCLUDE'])) {
                 $response = $excludedMessage;
@@ -46,7 +46,7 @@ abstract class LogData
 
     protected static function mask(array $data, array $masks): array
     {
-        $message = config('api-io-tracker.masked_message');
+        $message = config('api-recorder.masked_message');
         foreach ($data as $key => $value) {
             if (in_array(strtoupper($key), $masks)) {
                 $data[$key] = $message;
@@ -58,7 +58,7 @@ abstract class LogData
 
     protected static function filterResponse(?string $response, array $filter): string
     {
-        $excludedMessage = config('api-io-tracker.excluded_message');
+        $excludedMessage = config('api-recorder.excluded_message');
         if (isset($filter['EXCLUDE']) && in_array('RESPONSE', $filter['EXCLUDE'])) {
             return $excludedMessage;
         }
@@ -67,12 +67,12 @@ abstract class LogData
             return '';
         }
 
-        return substr($response, 0, config('api-io-tracker.max_response_size'));
+        return substr($response, 0, config('api-recorder.max_response_size'));
     }
 
     protected static function filterBody(?array $body, array $filter): string
     {
-        $excludedMessage = config('api-io-tracker.excluded_message');
+        $excludedMessage = config('api-recorder.excluded_message');
         if (isset($filter['EXCLUDE']) && in_array('BODY', $filter['EXCLUDE'])) {
             return $excludedMessage;
         }
@@ -88,12 +88,12 @@ abstract class LogData
             $body = static::mask($body, $bodyMask);
         }
 
-        return substr(json_encode($body), 0, config('api-io-tracker.max_body_size'));
+        return substr(json_encode($body), 0, config('api-recorder.max_body_size'));
     }
 
     protected static function filterHeaders(?array $headers, array $filter): string
     {
-        $excludedMessage = config('api-io-tracker.excluded_message');
+        $excludedMessage = config('api-recorder.excluded_message');
         if (isset($filter['EXCLUDE']) && in_array('HEADERS', $filter['EXCLUDE'])) {
             return $excludedMessage;
         }
@@ -109,7 +109,7 @@ abstract class LogData
             $headers = static::mask($headers, $headersMask);
         }
 
-        return substr(json_encode($headers), 0, config('api-io-tracker.max_header_size'));
+        return substr(json_encode($headers), 0, config('api-recorder.max_header_size'));
     }
 
     protected static function upperCase(array $values): array

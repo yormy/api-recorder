@@ -1,16 +1,16 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Observers\Listeners;
+namespace Yormy\ApiRecorder\Observers\Listeners;
 
-use Yormy\ApiIoTracker\DataObjects\LogPlainOutgoingData;
-use Yormy\ApiIoTracker\Models\LogHttpOutgoing;
+use Yormy\ApiRecorder\DataObjects\LogPlainOutgoingData;
+use Yormy\ApiRecorder\Models\LogHttpOutgoing;
 use Yormy\StringGuard\Services\UrlGuard;
 
 class PlainRequestListener
 {
     public function handle(object $event): void
     {
-        if (! config('api-io-tracker.enabled') || !config('api-io-tracker.outgoing.enabled')) {
+        if (! config('api-recorder.enabled') || !config('api-recorder.outgoing.enabled')) {
             $this->include = false;
             $this->data = [];
 
@@ -19,7 +19,7 @@ class PlainRequestListener
 
         $url = $event->url;
         $method = $event->method;
-        $config = config('api-io-tracker.outgoing.url_guards');
+        $config = config('api-recorder.outgoing.url_guards');
         $include = UrlGuard::isIncluded($url, $method, $config);
         $data = UrlGuard::getData($url, $method, $config);
 

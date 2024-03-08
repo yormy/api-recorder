@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Observers\Listeners;
+namespace Yormy\ApiRecorder\Observers\Listeners;
 
 class HttpRequestListener extends BaseListener
 {

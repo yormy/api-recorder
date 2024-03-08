@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Tests\Traits;
+namespace Yormy\ApiRecorder\Tests\Traits;
 
 use Illuminate\Http\Request;
 

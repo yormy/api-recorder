@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\DataObjects;
+namespace Yormy\ApiRecorder\DataObjects;
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Http\Client\Response;
@@ -27,6 +27,6 @@ class LogOutgoingData extends LogData
 
     protected static function getGlobalFilter(): array
     {
-        return static::upperCase(config('api-io-tracker.outgoing.mask'));
+        return static::upperCase(config('api-recorder.outgoing.mask'));
     }
 }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('apiio_http_incoming', function (Blueprint $table) {
+        Schema::create('api_recorder_incoming', function (Blueprint $table) {
             $table->id();
             $table->integer('status_code');
             $table->string('url');

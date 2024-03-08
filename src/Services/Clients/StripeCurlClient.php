@@ -1,8 +1,8 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Services\Clients;
+namespace Yormy\ApiRecorder\Services\Clients;
 
-use Yormy\ApiIoTracker\Observers\Events\PlainRequestEvent;
+use Yormy\ApiRecorder\Observers\Events\PlainRequestEvent;
 
 class StripeCurlClient extends \Stripe\HttpClient\CurlClient
 {

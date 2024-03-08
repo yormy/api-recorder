@@ -1,12 +1,12 @@
 {
-    "name": "yormy/api-io-tracker",
+    "name": "yormy/api-recorder",
     "description": "",
     "keywords": [
         "laravel",
         "api",
         "logger"
     ],
-    "homepage": "https://yormy.github.io/api-io-tracker/",
+    "homepage": "https://yormy.github.io/api-recorder/",
     "license": "MIT",
     "authors": [
         {
@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Yormy\\ApiIoTracker\\": "src"
+            "Yormy\\ApiRecorder\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Yormy\\ApiIoTracker\\Tests\\": "tests"
+            "Yormy\\ApiRecorder\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -72,7 +72,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Yormy\\ApiIoTracker\\ApiIoTrackerServiceProvider"
+                "Yormy\\ApiRecorder\\ApiRecorderServiceProvider"
             ]
         }
     },

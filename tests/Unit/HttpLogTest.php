@@ -1,11 +1,11 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Tests\Unit;
+namespace Yormy\ApiRecorder\Tests\Unit;
 
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
-use Yormy\ApiIoTracker\Models\LogHttpOutgoing;
-use Yormy\ApiIoTracker\Tests\TestCase;
+use Yormy\ApiRecorder\Models\LogHttpOutgoing;
+use Yormy\ApiRecorder\Tests\TestCase;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 class HttpLogTest extends TestCase
@@ -41,7 +41,7 @@ class HttpLogTest extends TestCase
             ],
         ];
 
-        config(['api-io-tracker.outgoing.url_guards' => $urlGuard]);
+        config(['api-recorder.outgoing.url_guards' => $urlGuard]);
 
         $startCount = LogHttpOutgoing::count();
         Http::get($exclude);

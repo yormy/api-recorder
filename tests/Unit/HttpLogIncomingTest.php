@@ -1,10 +1,10 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Tests\Unit;
+namespace Yormy\ApiRecorder\Tests\Unit;
 
-use Yormy\ApiIoTracker\Models\LogHttpIncoming;
-use Yormy\ApiIoTracker\Tests\TestCase;
-use Yormy\ApiIoTracker\Tests\Traits\RequestTrait;
+use Yormy\ApiRecorder\Models\LogHttpIncoming;
+use Yormy\ApiRecorder\Tests\TestCase;
+use Yormy\ApiRecorder\Tests\Traits\RequestTrait;
 
 class HttpLogIncomingTest extends TestCase
 {

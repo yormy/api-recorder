@@ -1,9 +1,9 @@
 <?php
 
-namespace Yormy\ApiIoTracker\ServiceProviders;
+namespace Yormy\ApiRecorder\ServiceProviders;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Yormy\ApiIoTracker\Observers\HttpLoggerSubscriber;
+use Yormy\ApiRecorder\Observers\HttpLoggerSubscriber;
 
 class EventServiceProvider extends ServiceProvider
 {

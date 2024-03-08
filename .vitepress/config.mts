@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
     title: "Api Io Tracker",
     description: "",
-    base: '/api-io-tracker/',
+    base: '/api-recorder/',
     head: [
         ['link', { rel: "apple-touch-icon", sizes: "180x180", href: "/assets/images/apple-touch-icon.png"}],
         ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/images/favicon-32x32.png"}],
@@ -15,14 +15,14 @@ export default defineConfig({
         },
         nav: [
             { text: 'Home', link: '/docs/' },
-            { text: 'Guide', link: '/docs/v1/introduction/what-is-api-io-tracker' },
+            { text: 'Guide', link: '/docs/v1/introduction/what-is-api-recorder' },
         ],
 
         sidebar: [
             {
                 text: 'Introduction',
                 items: [
-                    { text: 'What is Api Io Tracker', link: '/docs/v1/introduction/what-is-api-io-tracker' },
+                    { text: 'What is Api Io Tracker', link: '/docs/v1/introduction/what-is-api-recorder' },
                     { text: 'Definitions', link: '/docs/v1/definitions.md' },
                     { text: 'Need Support?', link: '/docs/general/support/support-me' },
                 ]
@@ -60,7 +60,7 @@ export default defineConfig({
             copyright: 'Copyright © 2022 to present Yormy'
         },
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/yormy/api-io-tracker' }
+            { icon: 'github', link: 'https://github.com/yormy/api-recorder' }
         ]
     }
 })

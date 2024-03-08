@@ -1,13 +1,13 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Services;
+namespace Yormy\ApiRecorder\Services;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Yormy\ApiIoTracker\DataObjects\LogIncomingData;
-use Yormy\ApiIoTracker\Models\LogHttpIncoming;
+use Yormy\ApiRecorder\DataObjects\LogIncomingData;
+use Yormy\ApiRecorder\Models\LogHttpIncoming;
 
 class DatabaseLogger extends BaseLogger
 {

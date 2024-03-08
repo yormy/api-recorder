@@ -1,15 +1,15 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Tests;
+namespace Yormy\ApiRecorder\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use Yormy\ApiIoTracker\ApiIoTrackerServiceProvider;
-use Yormy\ApiIoTracker\Http\Middleware\LogIncomingRequest;
-use Yormy\ApiIoTracker\ServiceProviders\EventServiceProvider;
-use Yormy\ApiIoTracker\Tests\Setup\Http\Controllers\TestController;
+use Yormy\ApiRecorder\ApiRecorderServiceProvider;
+use Yormy\ApiRecorder\Http\Middleware\LogIncomingRequest;
+use Yormy\ApiRecorder\ServiceProviders\EventServiceProvider;
+use Yormy\ApiRecorder\Tests\Setup\Http\Controllers\TestController;
 use Yormy\StringGuard\DataObjects\UrlGuardConfig;
 
 abstract class TestCase extends BaseTestCase
@@ -32,7 +32,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [
-            ApiIoTrackerServiceProvider::class,
+            ApiRecorderServiceProvider::class,
         ];
     }
 
@@ -48,7 +48,7 @@ abstract class TestCase extends BaseTestCase
             ],
         ];
 
-        config(['api-io-tracker.outgoing.url_guards' => $urlGuard]);
+        config(['api-recorder.outgoing.url_guards' => $urlGuard]);
 
         if (! defined('LARAVEL_START')) {
             define('LARAVEL_START', microtime(true));

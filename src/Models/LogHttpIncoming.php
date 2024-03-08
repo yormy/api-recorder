@@ -1,9 +1,9 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Models;
+namespace Yormy\ApiRecorder\Models;
 
 /**
- * Yormy\ApiIoTracker\Models\LogHttpIncoming
+ * Yormy\ApiRecorder\Models\LogHttpIncoming
  *
  * @method static \Illuminate\Database\Eloquent\Builder|LogHttpIncoming newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LogHttpIncoming newQuery()
@@ -12,7 +12,7 @@ namespace Yormy\ApiIoTracker\Models;
  */
 class LogHttpIncoming extends BaseModel
 {
-    protected $table = 'apiio_http_incoming';
+    protected $table = 'api_recorder_incoming';
 
     protected $fillable = [
         'status_code',

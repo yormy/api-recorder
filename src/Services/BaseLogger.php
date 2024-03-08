@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Services;
+namespace Yormy\ApiRecorder\Services;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;

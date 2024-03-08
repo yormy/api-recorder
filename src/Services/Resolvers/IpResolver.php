@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\ApiIoTracker\Services\Resolvers;
+namespace Yormy\ApiRecorder\Services\Resolvers;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\IpUtils;

@@ -30,7 +30,6 @@ class HttpLogTest extends TestCase
      */
     public function Http_ExcludedUrl_NotLogged(): void
     {
-        $this->markTestIncomplete('stub to fake requests, otherwise ci fails');
         $exclude = 'https://www.google.com';
 
         $urlGuard = [
@@ -56,7 +55,6 @@ class HttpLogTest extends TestCase
      */
     public function Http_Url_Logged(): void
     {
-        $this->markTestIncomplete('stub to fake requests, otherwise ci fails');
         $exclude = 'https://www.nu.nl';
 
         $startCount = LogHttpOutgoing::count();

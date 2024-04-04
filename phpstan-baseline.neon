@@ -1,0 +1,346 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to static method setHttpClient\\(\\) on an unknown class Stripe\\\\ApiRequestor\\.$#"
+			count: 1
+			path: src/ApiRecorderServiceProvider.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\ApiRecorderServiceProvider\\:\\:boot\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ApiRecorderServiceProvider.php
+
+		-
+			message: "#^Call to an undefined static method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:getGlobalFilter\\(\\)\\.$#"
+			count: 2
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:filterBody\\(\\) should return string but returns mixed\\.$#"
+			count: 1
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:filterHeaders\\(\\) should return string but returns mixed\\.$#"
+			count: 1
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:filterResponse\\(\\) should return string but returns mixed\\.$#"
+			count: 1
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:upperCase\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function strtoupper expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function substr expects string, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function substr expects string, string\\|false given\\.$#"
+			count: 2
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Parameter \\#3 \\$length of function substr expects int\\|null, mixed given\\.$#"
+			count: 3
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Variable \\$bodyMask in isset\\(\\) always exists and is not nullable\\.$#"
+			count: 1
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Variable \\$headersMask in isset\\(\\) always exists and is not nullable\\.$#"
+			count: 1
+			path: src/DataObjects/LogData.php
+
+		-
+			message: "#^Constant LARAVEL_START not found\\.$#"
+			count: 1
+			path: src/DataObjects/LogIncomingData.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogIncomingData\\:\\:getDuration\\(\\) should return float but returns string\\.$#"
+			count: 1
+			path: src/DataObjects/LogIncomingData.php
+
+		-
+			message: "#^Parameter \\#1 \\$response of static method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:filterResponse\\(\\) expects string\\|null, string\\|false given\\.$#"
+			count: 1
+			path: src/DataObjects/LogIncomingData.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function substr expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/DataObjects/LogIncomingData.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of static method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:upperCase\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/LogIncomingData.php
+
+		-
+			message: "#^Parameter \\#3 \\$length of function substr expects int\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/LogIncomingData.php
+
+		-
+			message: "#^Unsafe call to private method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogIncomingData\\:\\:getCurrentRoute\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/DataObjects/LogIncomingData.php
+
+		-
+			message: "#^Unsafe call to private method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogIncomingData\\:\\:getDuration\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/DataObjects/LogIncomingData.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of static method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:upperCase\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/LogOutgoingData.php
+
+		-
+			message: "#^Parameter \\$body of static method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:makeNow\\(\\) expects array\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/LogOutgoingData.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of static method Yormy\\\\ApiRecorder\\\\DataObjects\\\\LogData\\:\\:upperCase\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/LogPlainOutgoingData.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Http\\\\Middleware\\\\LogIncomingRequest\\:\\:handle\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Middleware/LogIncomingRequest.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Http\\\\Middleware\\\\LogIncomingRequest\\:\\:terminate\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Middleware/LogIncomingRequest.php
+
+		-
+			message: "#^Parameter \\#3 \\$filterConfig of static method Yormy\\\\StringGuard\\\\Services\\\\UrlGuard\\:\\:getData\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Http/Middleware/LogIncomingRequest.php
+
+		-
+			message: "#^Parameter \\#3 \\$filterConfig of static method Yormy\\\\StringGuard\\\\Services\\\\UrlGuard\\:\\:isIncluded\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Http/Middleware/LogIncomingRequest.php
+
+		-
+			message: "#^Property Yormy\\\\ApiRecorder\\\\Http\\\\Middleware\\\\LogIncomingRequest\\:\\:\\$dblogger has no type specified\\.$#"
+			count: 1
+			path: src/Http/Middleware/LogIncomingRequest.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class Eloquent\\.$#"
+			count: 1
+			path: src/Models/LogHttpIncoming.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class Eloquent\\.$#"
+			count: 1
+			path: src/Models/LogHttpOutgoing.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Observers\\\\Listeners\\\\BaseListener\\:\\:setFilter\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Observers/Listeners/BaseListener.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Observers\\\\Listeners\\\\BaseListener\\:\\:setFilter\\(\\) has parameter \\$event with no type specified\\.$#"
+			count: 1
+			path: src/Observers/Listeners/BaseListener.php
+
+		-
+			message: "#^Parameter \\#3 \\$filterConfig of static method Yormy\\\\StringGuard\\\\Services\\\\UrlGuard\\:\\:getData\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/BaseListener.php
+
+		-
+			message: "#^Parameter \\#3 \\$filterConfig of static method Yormy\\\\StringGuard\\\\Services\\\\UrlGuard\\:\\:isIncluded\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/BaseListener.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$request\\.$#"
+			count: 1
+			path: src/Observers/Listeners/HttpConnectionFailedListener.php
+
+		-
+			message: "#^Call to an undefined static method Yormy\\\\ApiRecorder\\\\Models\\\\LogHttpOutgoing\\:\\:create\\(\\)\\.$#"
+			count: 1
+			path: src/Observers/Listeners/HttpConnectionFailedListener.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$request\\.$#"
+			count: 1
+			path: src/Observers/Listeners/HttpResponseListener.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$response\\.$#"
+			count: 1
+			path: src/Observers/Listeners/HttpResponseListener.php
+
+		-
+			message: "#^Call to an undefined static method Yormy\\\\ApiRecorder\\\\Models\\\\LogHttpOutgoing\\:\\:create\\(\\)\\.$#"
+			count: 1
+			path: src/Observers/Listeners/HttpResponseListener.php
+
+		-
+			message: "#^Using nullsafe property access on non\\-nullable type object\\. Use \\-\\> instead\\.$#"
+			count: 1
+			path: src/Observers/Listeners/HttpResponseListener.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\ApiRecorder\\\\Observers\\\\Listeners\\\\PlainRequestListener\\:\\:\\$data\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\ApiRecorder\\\\Observers\\\\Listeners\\\\PlainRequestListener\\:\\:\\$include\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$body\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$headers\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$method\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$responseBody\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$responseCode\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$url\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Call to an undefined static method Yormy\\\\ApiRecorder\\\\Models\\\\LogHttpOutgoing\\:\\:create\\(\\)\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Parameter \\#3 \\$filterConfig of static method Yormy\\\\StringGuard\\\\Services\\\\UrlGuard\\:\\:getData\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Parameter \\#3 \\$filterConfig of static method Yormy\\\\StringGuard\\\\Services\\\\UrlGuard\\:\\:isIncluded\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/PlainRequestListener.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\BaseLogger\\:\\:listeners\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/BaseLogger.php
+
+		-
+			message: "#^Property Yormy\\\\ApiRecorder\\\\Services\\\\BaseLogger\\:\\:\\$modelsRetrieved has no type specified\\.$#"
+			count: 1
+			path: src/Services/BaseLogger.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\Clients\\\\StripeCurlClient\\:\\:request\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/Clients/StripeCurlClient.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\Clients\\\\StripeCurlClient\\:\\:request\\(\\) has parameter \\$absUrl with no type specified\\.$#"
+			count: 1
+			path: src/Services/Clients/StripeCurlClient.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\Clients\\\\StripeCurlClient\\:\\:request\\(\\) has parameter \\$hasFile with no type specified\\.$#"
+			count: 1
+			path: src/Services/Clients/StripeCurlClient.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\Clients\\\\StripeCurlClient\\:\\:request\\(\\) has parameter \\$headers with no type specified\\.$#"
+			count: 1
+			path: src/Services/Clients/StripeCurlClient.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\Clients\\\\StripeCurlClient\\:\\:request\\(\\) has parameter \\$method with no type specified\\.$#"
+			count: 1
+			path: src/Services/Clients/StripeCurlClient.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\Clients\\\\StripeCurlClient\\:\\:request\\(\\) has parameter \\$params with no type specified\\.$#"
+			count: 1
+			path: src/Services/Clients/StripeCurlClient.php
+
+		-
+			message: "#^Parameter \\$responseHeaders of class Yormy\\\\ApiRecorder\\\\Observers\\\\Events\\\\PlainRequestEvent constructor expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Services/Clients/StripeCurlClient.php
+
+		-
+			message: "#^Yormy\\\\ApiRecorder\\\\Services\\\\Clients\\\\StripeCurlClient\\:\\:request\\(\\) calls parent\\:\\:request\\(\\) but Yormy\\\\ApiRecorder\\\\Services\\\\Clients\\\\StripeCurlClient does not extend any class\\.$#"
+			count: 1
+			path: src/Services/Clients/StripeCurlClient.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\DatabaseLogger\\:\\:saveLogs\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/DatabaseLogger.php
+
+		-
+			message: "#^Property Yormy\\\\ApiRecorder\\\\Services\\\\DatabaseLogger\\:\\:\\$logModel has no type specified\\.$#"
+			count: 1
+			path: src/Services/DatabaseLogger.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\Resolvers\\\\Encryptor\\:\\:decrypt\\(\\) should return string\\|null but returns mixed\\.$#"
+			count: 1
+			path: src/Services/Resolvers/Encryptor.php
+
+		-
+			message: "#^Cannot call method ip\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Services/Resolvers/IpResolver.php
+
+		-
+			message: "#^Parameter \\#1 \\$ip of static method Yormy\\\\ApiRecorder\\\\Services\\\\Resolvers\\\\IpResolver\\:\\:matches\\(\\) expects string, array\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Services/Resolvers/IpResolver.php
+
+		-
+			message: "#^Parameter \\#1 \\$propertyName of method Jenssegers\\\\Agent\\\\Agent\\:\\:version\\(\\) expects string, bool\\|string given\\.$#"
+			count: 2
+			path: src/Services/Resolvers/UserAgentResolver.php
+
+		-
+			message: "#^Method Yormy\\\\ApiRecorder\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getCurrent\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/Resolvers/UserResolver.php

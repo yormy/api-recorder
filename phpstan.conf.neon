@@ -1,5 +1,5 @@
 includes:
-    #- ./phpstan-baseline.neon
+    - ./phpstan-baseline.neon
 
 parameters:
 
@@ -10,15 +10,15 @@ parameters:
         analyse:
             - ./vendor/**
             - src/Tests
+            - src//Services/Clients
 
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
     treatPhpDocTypesAsCertain: false
 
    # reportUnmatchedIgnoredErrors: false
-   # ignoreErrors:
-   #     - '#Call to an undefined method Illuminate#'  #ignore scope on model errors
-   #     - '#Call to an undefined static method Illuminate#'  #ignore scope on model errors
+    #ignoreErrors:
+        #- '#StripeCurlClient extends unknown class#'
 
     # Level 9 is the strictest
     level: 9

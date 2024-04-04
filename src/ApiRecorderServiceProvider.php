@@ -2,7 +2,6 @@
 
 namespace Yormy\ApiRecorder;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Yormy\ApiRecorder\Http\Middleware\LogIncomingRequest;

@@ -6,9 +6,9 @@ use Yormy\ApiRecorder\Observers\Events\PlainRequestEvent;
 
 class StripeCurlClient extends \Stripe\HttpClient\CurlClient
 {
-    public function request($method, $absUrl, $headers, $params, $hasFile)
+    public function request($method, $absUrl, $headers, $params, $hasFile, $apiMode = 'v1')
     {
-        [$rbody, $rcode, $rheaders] = parent::request($method, $absUrl, $headers, $params, $hasFile, $apiMode = 'v1');
+        [$rbody, $rcode, $rheaders] = parent::request($method, $absUrl, $headers, $params, $hasFile, $apiMode);
 
         event(new PlainRequestEvent(
             method: $method,

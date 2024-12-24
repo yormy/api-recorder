@@ -1,0 +1,24 @@
+includes:
+    - ./phpstan-baseline.neon
+
+parameters:
+
+    paths:
+        - src/
+
+    excludePaths:
+        analyse:
+            - ./vendor/**
+            - src/Tests
+            - src//Services/Clients
+
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    treatPhpDocTypesAsCertain: false
+
+   # reportUnmatchedIgnoredErrors: false
+    #ignoreErrors:
+        #- '#StripeCurlClient extends unknown class#'
+
+    # Level 9 is the strictest
+    level: 9

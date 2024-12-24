@@ -30,14 +30,14 @@ class HttpLogTest extends TestCase
      */
     public function Http_ExcludedUrl_NotLogged(): void
     {
-        $exclude = 'https://www.nu.nl';
+        $exclude = 'https://www.google.com';
 
         $urlGuard = [
             'include' => [
                 UrlGuardConfig::make('*'),
             ],
             'exclude' => [
-                UrlGuardConfig::make('https://www.nu.*'),
+                UrlGuardConfig::make('https://www.google.*'),
             ],
         ];
 

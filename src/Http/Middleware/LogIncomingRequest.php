@@ -29,7 +29,7 @@ class LogIncomingRequest
 
     public function terminate(Request $request, Response|JsonResponse|RedirectResponse $response)
     {
-        if (! config('api-recorder.enabled') || !config('api-recorder.incoming.enabled')) {
+        if (! config('api-recorder.enabled') || ! config('api-recorder.incoming.enabled')) {
             return;
         }
 

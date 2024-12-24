@@ -12,7 +12,7 @@ class BaseListener
 
     protected function setFilter($event)
     {
-        if (! config('api-recorder.enabled') || !config('api-recorder.outgoing.enabled')) {
+        if (! config('api-recorder.enabled') || ! config('api-recorder.outgoing.enabled')) {
             $this->include = false;
             $this->data = [];
 

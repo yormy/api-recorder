@@ -8,7 +8,7 @@ class StripeCurlClient extends \Stripe\HttpClient\CurlClient
 {
     public function request($method, $absUrl, $headers, $params, $hasFile)
     {
-        [$rbody, $rcode, $rheaders] = parent::request($method, $absUrl, $headers, $params, $hasFile);
+        [$rbody, $rcode, $rheaders] = parent::request($method, $absUrl, $headers, $params, $hasFile, $apiMode = 'v1');
 
         event(new PlainRequestEvent(
             method: $method,
